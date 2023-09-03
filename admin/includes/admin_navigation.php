@@ -43,7 +43,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="./categories.php"><i class="fa-solid fa-location-arrow text-primary fa-2x"></i> Navigation</a>
+                        <a href="./navigation.php"><i class="fa-solid fa-location-arrow text-primary fa-2x"></i> Navigation</a>
                     </li>
                     <li class="active">
                         <a href="commentaire.php"><i class="fa-regular fa-comments text-primary fa-2x"></i> Commentaires</a>
