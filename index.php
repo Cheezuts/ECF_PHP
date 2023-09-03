@@ -37,7 +37,7 @@ include "includes/navigation.php";
                 <img class="img-responsive" src="images/<?php echo $serv_image ?>" alt="">
                 <hr>
                 <p><?php echo $serv_contenu ?></p>
-                <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+                <!-- <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a> -->
 
                 <hr>
 
@@ -48,19 +48,18 @@ include "includes/navigation.php";
                 <hr>
 
                 <!-- Pager -->
-                <ul class="pager">
+                <!-- <ul class="pager">
                     <li class="previous">
                         <a href="#">&larr; Older</a>
                     </li>
                     <li class="next">
                         <a href="#">Newer &rarr;</a>
                     </li>
-                </ul>
+                </ul> -->
 
             </div>
 
-            <?php include "includes/recherche.php";
-            ?>
+            <!-- <?php include "includes/recherche.php"; ?> -->
 
         <hr>
 

@@ -32,20 +32,32 @@
                         <a href="index.php"><i class="fa-solid fa-chart-line text-primary fa-2x"></i> Dashboard</a>
                     </li>                    
                     <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#posts_dropdown"><i class="fa-solid fa-car text-primary fa-2x"></i> Voitures<i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="posts_dropdown" class="collapse">
+                        <a href="javascript:;" data-toggle="collapse" data-target="#services_dropdown"><i class="fa-solid fa-note-sticky text-primary fa-2x"></i> Services<i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="services_dropdown" class="collapse">
                             <li>
-                                <a href="./posts.php">Toutes les Voitures"</a>
+                                <a href="./services.php">Toutes les services</a>
                             </li>
                             <li>
-                                <a href="posts.php?source=add_services">Ajout de Voiture</a>
+                                <a href="services.php?source=add_services">Ajout de service</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#voitures_dropdown"><i class="fa-solid fa-car text-primary fa-2x"></i> Voitures<i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="voitures_dropdown" class="collapse">
+                            <li>
+                                <a href="#">Toutes les Voitures"</a>
+                            </li>
+                            <li>
+                                <a href="voitures.php?source=add_services">Ajout de Voiture</a>
                             </li>
                         </ul>
                     </li>
                     <li>
                         <a href="./navigation.php"><i class="fa-solid fa-location-arrow text-primary fa-2x"></i> Navigation</a>
                     </li>
-                    <li class="active">
+                    <li class="">
                         <a href="commentaire.php"><i class="fa-regular fa-comments text-primary fa-2x"></i> Commentaires</a>
                     </li>
                     <li>
