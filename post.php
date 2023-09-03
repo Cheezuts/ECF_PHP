@@ -105,6 +105,15 @@
                 <div class="well">
                     <h4>Leave a Comment:</h4>
                     <form role="form">
+
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="comment_author">
+                        </div>
+
+                        <div class="form-group">
+                            <input type="email" class="form-control" name="comment__email">
+                        </div>
+
                         <div class="form-group">
                             <textarea class="form-control" rows="3"></textarea>
                         </div>
