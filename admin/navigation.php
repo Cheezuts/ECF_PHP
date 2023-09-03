@@ -14,7 +14,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Welcome to admin
+                            Bienvenue dans l'administration
                             <small>Author</small>
                         </h1>
                         
@@ -24,7 +24,7 @@
 
                             <form action="" method="post">
                                 <div class="form-group">
-                                    <label for="nav_titre">Add Category</label>
+                                    <label for="nav_titre">Ajouter un menu de navigation</label>
                                     <input class="form-control" type="text" name="nav_titre">
                                 </div>
                                 <div class="form-group">
@@ -52,7 +52,7 @@
                                 <thead>
                                     <tr>
                                         <th>Id</th>
-                                        <th>Category Title</th>
+                                        <th>Menu</th>
                                         <th>Editer</th>
                                         <th>Supprimer</th>
                                     </tr>
