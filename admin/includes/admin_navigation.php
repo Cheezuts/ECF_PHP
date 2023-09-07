@@ -30,7 +30,18 @@
                 <ul class="nav navbar-nav side-nav">
                     <li>
                         <a href="index.php"><i class="fa-solid fa-chart-line text-primary fa-2x"></i> Dashboard</a>
-                    </li>                    
+                    </li>
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#horaires_dropdown"><i class="fa-solid fa-clock text-primary fa-2x"></i> Horaires<i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="horaires_dropdown" class="collapse">
+                            <li>
+                                <a href="./horaires.php">Toutes les horaires</a>
+                            </li>
+                            <li>
+                                <a href="horaires.php?source=add_horaires">Ajout d'horaire</a>
+                            </li>
+                        </ul>
+                    </li>                   
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#services_dropdown"><i class="fa-solid fa-note-sticky text-primary fa-2x"></i> Services<i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="services_dropdown" class="collapse">
