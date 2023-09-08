@@ -46,7 +46,7 @@
                         <a href="javascript:;" data-toggle="collapse" data-target="#services_dropdown"><i class="fa-solid fa-note-sticky text-primary fa-2x"></i> Services<i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="services_dropdown" class="collapse">
                             <li>
-                                <a href="./services.php">Toutes les services</a>
+                                <a href="./services.php">Tous les services</a>
                             </li>
                             <li>
                                 <a href="services.php?source=add_services">Ajout de service</a>
@@ -58,10 +58,10 @@
                         <a href="javascript:;" data-toggle="collapse" data-target="#voitures_dropdown"><i class="fa-solid fa-car text-primary fa-2x"></i> Voitures<i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="voitures_dropdown" class="collapse">
                             <li>
-                                <a href="#">Toutes les Voitures"</a>
+                                <a href="./voitures.php">Toutes les Voitures</a>
                             </li>
                             <li>
-                                <a href="voitures.php?source=add_services">Ajout de Voiture</a>
+                                <a href="voitures.php?source=add_voitures">Ajout de Voiture</a>
                             </li>
                         </ul>
                     </li>
