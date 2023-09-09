@@ -75,7 +75,7 @@ while ($row = mysqli_fetch_assoc($select_commentaires_query)) {
         }
         ?>
     <h4><?php echo $com_nom . ' ' . $com_prenom; ?></h4>
-    <p>Commentaire : <?php echo $com_commentaire; ?></p>
+    <p><?php echo $com_commentaire; ?></p>
     <div class="rating">
         
     </div>

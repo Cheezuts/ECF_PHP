@@ -12,7 +12,7 @@
     if(isset($_POST['create_comment'])) {
         $com_nom = $_POST['com_nom'];
         $com_prenom = $_POST['com_prenom'];
-        $com_commentaire = $_POST['com_commentaire'];
+        $com_commentaire = nl2br($_POST['com_commentaire']);
         $com_note = $_POST['com_note'];
     
         $query = "INSERT INTO commentaires (com_nom, com_prenom, com_commentaire, com_note, com_status) ";

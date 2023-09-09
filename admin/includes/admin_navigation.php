@@ -68,8 +68,16 @@
                     <li>
                         <a href="./navigation.php"><i class="fa-solid fa-location-arrow text-primary fa-2x"></i> Navigation</a>
                     </li>
-                    <li class="">
-                        <a href="commentaires.php"><i class="fa-regular fa-comments text-primary fa-2x"></i> Commentaires</a>
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#commentaires_dropdown"><i class="fa-regular fa-comments text-primary fa-2x"></i> Commentaires<i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="commentaires_dropdown" class="collapse">
+                            <li>
+                                <a href="./commentaires.php">Toutes les Commentaires</a>
+                            </li>
+                            <li>
+                                <a href="commentaires.php?source=add_commentaires">Ajout de Commentaire</a>
+                            </li>
+                        </ul>
                     </li>
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-user text-primary fa-2x"></i> Utilisateurs<i class="fa fa-fw fa-caret-down"></i></a>

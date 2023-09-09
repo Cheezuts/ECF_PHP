@@ -14,7 +14,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                     <h1 class="page-header">
-                            Gestion des services
+                            Gestion des commentaires
                             <small>Author</small>
                     </h1>
 
@@ -26,11 +26,11 @@
                     }
 
                     switch ($source) {
-                        case 'add_services';
-                            include "includes/add_services.php";
+                        case 'add_commentaires';
+                            include "includes/add_commentaires.php";
                             break;
-                        case 'edit_services';
-                            include "includes/edit_services.php";
+                        case 'edit_commentaires';
+                            include "includes/edit_commentaires.php";
                             break;
                         default:
                             include "includes/view_all_commentaires.php";
