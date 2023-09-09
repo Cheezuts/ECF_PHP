@@ -12,6 +12,8 @@ include "includes/navigation.php";
 
     <h1 class="text-center">Nos Voitures</h1>
 
+    <!-- RECHERCHE -->
+
     <div class="row text-center">
     <form action="recherche.php" method="POST" class="search-form">
         <input type="text" class="search-input" name="search" placeholder="Rechercher une voiture...">
@@ -19,6 +21,9 @@ include "includes/navigation.php";
     </form>
     </div>
 
+
+
+<!-- FIN DE RECHERCHE -->
 
     
 
