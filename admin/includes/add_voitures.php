@@ -8,7 +8,7 @@ if (isset($_POST['create_voiture'])) {
     $carburant = $_POST['carburant'];
     $kilometrage = $_POST['kilometrage'];
     $prix = $_POST['prix'];
-    $description = $_POST['description'];
+    $description = nl2br($_POST['description']);
     $image = $_FILES['image']['name'];
     $image_temp = $_FILES['image']['tmp_name'];
 

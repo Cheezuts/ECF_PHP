@@ -69,7 +69,7 @@
                         <a href="./navigation.php"><i class="fa-solid fa-location-arrow text-primary fa-2x"></i> Navigation</a>
                     </li>
                     <li class="">
-                        <a href="commentaire.php"><i class="fa-regular fa-comments text-primary fa-2x"></i> Commentaires</a>
+                        <a href="commentaires.php"><i class="fa-regular fa-comments text-primary fa-2x"></i> Commentaires</a>
                     </li>
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-user text-primary fa-2x"></i> Utilisateurs<i class="fa fa-fw fa-caret-down"></i></a>

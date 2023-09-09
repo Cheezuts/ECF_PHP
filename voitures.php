@@ -1,3 +1,4 @@
+<div class="container">
 <?php
 include "includes/db.php";
 include "includes/header.php";
@@ -5,10 +6,9 @@ include "includes/navigation.php";
 ?>
 
 <!-- Page Content -->
-<div class="container">
+
     
-</div>
-<div class="content-wrapper">
+
 
     <h1 class="text-center">Nos Voitures</h1>
 
@@ -19,7 +19,6 @@ include "includes/navigation.php";
     </form>
     </div>
 
-    <div class="row p-2 m-2 justify-content-center align-items-center">
 
     
 
@@ -38,8 +37,7 @@ include "includes/navigation.php";
             $image = $row['image'];
         ?>
 
-            <div class="col-xs-12 col-6 col-md-4 col-lg-3 d-flex justify-content-between text-center" >
-                <div class="panel panel-default text-center" style="max-width: 400px; margin: 10px;">
+                <div class="panel panel-default col-xs-12 col-sm-6 col-md-4 col-lg-4 d-flex justify-content-between text-center col-xs-offset-0 col-sm-offset-0 col-md-offset-1 col-lg-offset-1" style="margin-bottom: 50px;">
                     <img class="card-img-top p-2 m-2 img-fluid" src="images/<?php echo $image; ?>" style="width: 100%; height: 15vw; object-fit: cover;">
                     <div class="panel-heading p-2 m-2">
                         <h3 class="panel-title"><?php echo $marque . ' ' . $modele; ?></h3>
@@ -54,15 +52,12 @@ include "includes/navigation.php";
                         </div>
                     </div>
                 </div>
-            </div>
 
         <?php
         }
         ?>
 
-    </div>
-</div>
-
+<div class="row"></div>
 <h2 class="text-center">Horaires</h2>
 <?php include "includes/horaires.php" ?>
 
@@ -70,3 +65,4 @@ include "includes/navigation.php";
 
 <!-- Footer -->
 <?php include "includes/footer.php"; ?>
+</div>
