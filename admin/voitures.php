@@ -15,7 +15,7 @@
                     <div class="col-lg-12">
                     <h1 class="page-header">
                             Gestion des voitures
-                            <small>Author</small>
+                            <small><?php echo $_SESSION['user_email'] ;?></small>
                     </h1>
 
                     <?php
