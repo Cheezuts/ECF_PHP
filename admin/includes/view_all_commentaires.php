@@ -1,6 +1,51 @@
+<?php
+if (isset($_POST['apply'])) {
+    $bulk_options = $_POST['bulk_options'];
+
+    foreach ($_POST['checkboxArray'] as $com_id) {
+        switch ($bulk_options) {
+            case 'publier':
+                $query = "UPDATE commentaires SET com_status = 'publier' WHERE com_id = $com_id ";
+                $publier_commentaires_query = mysqli_query($connection, $query);
+                break;
+
+            case 'masquer':
+                $query = "UPDATE commentaires SET com_status = 'masquer' WHERE com_id = $com_id ";
+                $masquer_commentaires_query = mysqli_query($connection, $query);
+                break;
+
+            case 'supprimer':
+                $query = "DELETE FROM commentaires WHERE com_id = $com_id ";
+                $delete_commentaires_query = mysqli_query($connection, $query);
+                break;
+        }
+    }
+
+    // Redirection vers la page des commentaires après l'application de l'action
+    header("Location: commentaires.php");
+}
+?>
+
 <table class="table table-bordered table-hover">
+
+    <div id="bulkOptionsContainer" class="col-xs-4">
+        <form action="" method="post">
+            <select name="bulk_options" id="bulk_options" class="form-control">
+                <option value="">Selectionnez une option</option>
+                <option value="publier">Publier</option>
+                <option value="masquer">Masquer</option>
+                <option value="supprimer">Supprimer</option>
+            </select>
+    </div>
+
+    <div class="col-xs-4">
+        <input type="submit" name="apply" class="btn btn-success" value="Appliquer">
+        <a class="btn btn-primary" href="commentaires.php?source=add_commentaires">Ajouter un commentaire</a>
+    </div>
+
                         <thead>
                             <tr>
+                            <th><input id="selectAllBoxes" type="checkbox"></th>
                                 <th>Id</th>
                                 <th>Nom</th>
                                 <th>Prénom</th>
@@ -29,6 +74,11 @@
                         $com_status = $row['com_status'];
 
                         echo "<tr>";
+                        ?>
+
+                        <td><input class='checkBoxes' type='checkbox' name='checkboxArray[]' value='<?php echo $com_id ?>'></td>
+
+                        <?php
                         echo "<td>$com_id</td>";
                         echo "<td>$com_nom</td>";
                         echo "<td>$com_prenom</td>";

@@ -23,6 +23,10 @@
                 <!-- /.row -->
                 
 <div class="row">
+
+
+<!-- compteur des services -->
+
     <div class="col-lg-3 col-md-6">
         <div class="panel panel-primary">
             <div class="panel-heading">
@@ -55,6 +59,10 @@
             </a>
         </div>
     </div>
+
+
+<!-- compteur des commentaires -->
+
     <div class="col-lg-3 col-md-6">
         <div class="panel panel-green">
             <div class="panel-heading">
@@ -85,6 +93,10 @@
             </a>
         </div>
     </div>
+
+
+    <!-- compteur des utilisateurs -->
+
     <div class="col-lg-3 col-md-6">
         <div class="panel panel-yellow">
             <div class="panel-heading">
@@ -115,6 +127,10 @@
             </a>
         </div>
     </div>
+
+
+    <!-- compteur des navigations -->
+
     <div class="col-lg-3 col-md-6">
         <div class="panel panel-red">
             <div class="panel-heading">
@@ -145,6 +161,10 @@
             </a>
         </div>
     </div>
+
+
+    <!-- compteur des voitures -->
+
     <div class="col-lg-3 col-md-6">
         <div class="panel panel-info">
             <div class="panel-heading">
@@ -175,6 +195,38 @@
             </a>
         </div>
     </div>
+
+
+    <!-- compteur des horaires -->
+
+    <div class="col-lg-3 col-md-6">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-3">
+                    <i class="glyphicon glyphicon-time fa-5x"></i>
+                </div>
+                <div class="col-xs-9 text-right">
+                    <?php 
+                    $query = "SELECT * FROM horaires_semaine";
+                    $select_all_horaires = mysqli_query($connection, $query);
+                    $horaires_counts = mysqli_num_rows($select_all_horaires);
+                    
+                    echo "<div class='huge'>{$horaires_counts}</div>";
+                    ?>
+                    <div class="text-bold">Horaires</div>
+                </div>
+            </div>
+        </div>
+        <a href="horaires.php">
+            <div class="panel-footer">
+                <span class="pull-left text-bold">Détails</span>
+                <span class="pull-right"><i class="glyphicon glyphicon-arrow-right"></i></span>
+                <div class="clearfix"></div>
+            </div>
+        </a>
+    </div>
+</div>
 </div>
 
 <!-- compteur des commentaires publier -->
