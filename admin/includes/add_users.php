@@ -12,11 +12,9 @@ if (isset($_POST['create_user'])) {
     
     // Vérifiez si la requête d'insertion a réussi
     
-    if ($create_user_query) {        
-        header("Location: users.php");
-    } else {
+    
         confirmQuery($create_user_query);
-    }
+        echo "<div class='alert alert-success'>Utilisateur créé: <a href='users.php'>Voir les utilisateurs</a></div>";
 }
 ?>
 
@@ -42,3 +40,4 @@ if (isset($_POST['create_user'])) {
         <input class="btn btn-primary" type="submit" name="create_user" value="Créer Utilisateur">
     </div>
 </form>
+
