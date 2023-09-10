@@ -14,6 +14,17 @@
         $com_prenom = $_POST['com_prenom'];
         $com_commentaire = nl2br($_POST['com_commentaire']);
         $com_note = $_POST['com_note'];
+
+        if(!empty($com_nom) && !empty($com_prenom) && !empty($com_commentaire) && !empty($com_note)){
+            $com_nom = mysqli_real_escape_string($connection, $com_nom);
+            $com_prenom = mysqli_real_escape_string($connection, $com_prenom);
+            $com_commentaire = mysqli_real_escape_string($connection, $com_commentaire);
+            $com_note = mysqli_real_escape_string($connection, $com_note);
+        } else {
+            echo "<script>alert('Tous les champs doivent être remplis')</script>";
+
+        }
+
     
         $query = "INSERT INTO commentaires (com_nom, com_prenom, com_commentaire, com_note, com_status) ";
         $query .= "VALUES ('{$com_nom}', '{$com_prenom}', '{$com_commentaire}', '{$com_note}', 'masquer') ";

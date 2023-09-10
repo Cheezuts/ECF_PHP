@@ -21,8 +21,11 @@
             $create_service_query = mysqli_query($connection, $query);
             
             confirmQuery($create_service_query);
+
+            $the_serv_id =mysqli_insert_id($connection);
             
-            header("Location: services.php");
+            echo "<p class='bg-success'>Service créer ! <a href='services.php?p_id={$the_serv_id}'>Retour à tous les services</a> ou retourner à l'<a href='index.php'>ACCUEIL</a></p>";
+
 
     }
 

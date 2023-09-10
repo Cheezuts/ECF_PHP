@@ -21,11 +21,13 @@ if(isset($_POST['checkBoxArray'])) {
             <option value="">Selectionnez une option</option>
             <option value="delete">Supprimer</option>
         </select>
-    </div>
+</div>
+
     <div class="col-xs-4">
         <input type="submit" name="submit" class="btn btn-success" value="Appliquer">
         <a class="btn btn-primary" href="services.php?source=add_services">Ajouter un service</a>
     </div>
+    
 </div>
                         <thead>
                             <tr>

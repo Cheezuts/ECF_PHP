@@ -42,6 +42,7 @@ if(isset($_POST['checkBoxArray'])) {
                                 <th>Description</th>
                                 <th>Couverture</th>
                                 <th>Photos</th>
+                                <th>Voir le véhicule</th>
                                 <th>Editer</th>
                                 <th>Supprimer</th>
                             </tr>
@@ -81,6 +82,7 @@ if(isset($_POST['checkBoxArray'])) {
             echo "<td>$description</td>";
             echo "<td class='text-center'><img width='100' src='../images/$image' alt='image'></td>";
             echo "<td class='text-center'><img width='100' src='../images/$photos' alt='image'></td>";
+            echo "<td class='text-center'><a href='../details.php?id={$voiture_id}'><i class='fa-solid fa-eye fa-2x'></i></a></td>";
             echo "<td class='text-center'><a href='voitures.php?source=edit_voitures&p_id={$voiture_id}'><i class='fa-solid fa-pen fa-2x'></i></a></td>";
             echo "<td class='text-center'><a href='voitures.php?delete={$voiture_id}'><i class='fa-solid fa-trash text-danger fa-2x'></i></a></td>";
             echo "</tr>";
