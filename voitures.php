@@ -43,7 +43,9 @@ include "includes/navigation.php";
         ?>
 
                 <div class="panel panel-default col-xs-12 col-sm-6 col-md-4 col-lg-4 d-flex justify-content-between text-center col-xs-offset-0 col-sm-offset-0 col-md-offset-1 col-lg-offset-1" style="margin-bottom: 50px;">
+                <a href="details.php?id=<?php echo $voiture_id; ?>">
                     <img class="card-img-top p-2 m-2 img-fluid" src="images/<?php echo $image; ?>" style="width: 100%; height: 15vw; object-fit: cover;">
+                </a>
                     <div class="panel-heading p-2 m-2">
                         <h3 class="panel-title"><?php echo $marque . ' ' . $modele; ?></h3>
                     </div>

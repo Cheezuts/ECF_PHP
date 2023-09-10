@@ -27,7 +27,7 @@ if (isset($_GET['source']) && $_GET['source'] === 'edit_horaires') {
 
         confirmQuery($update_horaires_query);
 
-        header("Location: horaires.php");
+        echo "<p class='bg-success'>Horaires mise à jour ! <a href='horaires.php?'>Retour à toutes les horaires</a> ou retourner à l'<a href='index.php'>ACCUEIL</a></p>";
     }
 
     $query = "SELECT * FROM horaires_semaine WHERE id = {$the_id}";

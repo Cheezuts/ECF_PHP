@@ -21,7 +21,7 @@ if(isset($_GET['p_id'])) {
         $serv_titre = $_POST['titre'];
         $serv_image = $_FILES['image']['name'];
         $serv_image_temp = $_FILES['image']['tmp_name'];
-        $serv_contenu = $_POST['contenu'];
+        $serv_contenu =nl2br($_POST['contenu']);
         
         move_uploaded_file($serv_image_temp, "../images/$serv_image");
         
@@ -46,9 +46,8 @@ if(isset($_GET['p_id'])) {
         
         $update_serv = mysqli_query($connection, $query);
         
-        confirmQuery($update_serv);
-        
-        header("Location: services.php");
+        confirmQuery($update_serv);        
+        echo "<p class='bg-success'>Service mis à jour! <a href='services.php?p_id={$the_serv_id}'>Retour à tous les services</a> ou retourner à l'<a href='index.php'>ACCUEIL</a></p>";
         
     }
 ?>
@@ -66,8 +65,7 @@ if(isset($_GET['p_id'])) {
     
     <div class="form-group">
         <label for="post_content">Contenu</label>
-        <textarea class="form-control "name="contenu" id="" cols="30" rows="10"><?php echo $serv_contenu ; ?>
-        </textarea>
+        <textarea class="form-control "name="contenu" id="" cols="30" rows="10"><?php echo $serv_contenu ; ?></textarea>
     </div>
     
     

@@ -34,6 +34,18 @@
                 <li><a href="commentaires.php">Commentaires</a></li>
                 <li><a href="contact.php">Contact</a></li>
                 <li><a href="admin">Admin</a></li>
+
+                <!-- Lien if connected -->
+<?php 
+if(!isset($_SESSION['user_email'])) {
+    if(isset($_GET['id'])) {
+        $the_voiture_id = $_GET['id'];
+        echo $the_voiture_id;
+        echo "<li><a href='admin/voitures.php?source=edit_voitures&p_id={$the_voiture_id}'>Modifier</a></li>";
+    }
+}
+?>
+                <!-- Lien if connected -->
                 
                 </ul>
             </div>
