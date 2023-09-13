@@ -4,14 +4,11 @@ if (isset($_POST['create_user'])) {
     $user_password = $_POST['user_password'];
     $user_role = $_POST['user_role'];
     
-    // Assurez-vous de valider et sécuriser les données entrées par l'utilisateur avant de les utiliser dans la requête SQL
+    $hashed_password = password_hash($user_password, PASSWORD_DEFAULT);
     
     $query = "INSERT INTO admins (user_email, user_password, user_role) ";
-    $query .= "VALUES ('$user_email', '$user_password', '$user_role')";
-    $create_user_query = mysqli_query($connection, $query);
-    
-    // Vérifiez si la requête d'insertion a réussi
-    
+    $query .= "VALUES ('$user_email', '$hashed_password', '$user_role')";
+    $create_user_query = mysqli_query($connection, $query);  
     
         confirmQuery($create_user_query);
         echo "<div class='alert alert-success'>Utilisateur créé: <a href='users.php'>Voir les utilisateurs</a></div>";
@@ -40,4 +37,3 @@ if (isset($_POST['create_user'])) {
         <input class="btn btn-primary" type="submit" name="create_user" value="Créer Utilisateur">
     </div>
 </form>
-
