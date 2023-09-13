@@ -77,7 +77,7 @@ if(isset($_POST['checkBoxArray'])) {
             echo "<td>$samedi</td>";
             echo "<td>$dimanche</td>";
             echo "<td class='text-center'><a href='horaires.php?source=edit_horaires&id={$id}'><i class='fa-solid fa-pen fa-2x'></a></td>";
-            echo "<td class='text-center'><a href='horaires.php?delete={$id}'><i class='fa-solid fa-trash text-danger fa-2x'></a></td>";
+            echo "<td class='text-center'><a onClick=\"javascript: return confirm('etes vous sur de vouloir supprimer ?')\" href='horaires.php?delete={$id}'><i class='fa-solid fa-trash text-danger fa-2x'></a></td>";
             echo "</tr>";
         }
         ?>

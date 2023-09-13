@@ -81,7 +81,7 @@ if(isset($_POST['checkBoxArray'])) {
                         echo "<td>$user_password</td>";
                         echo "<td>$user_role</td>";
                         echo "<td class='text-center'><a href='users.php?source=edit_users&user_id={$user_id}'><i class='fa-solid fa-pen fa-2x'></a></td>";
-                        echo "<td class='text-center'><a href='users.php?delete={$user_id}'><i class='fa-solid fa-trash text-danger fa-2x'></a></td>";
+                        echo "<td class='text-center'><a onClick=\"javascript: return confirm('etes vous sur de vouloir supprimer ?')\" href='users.php?delete={$user_id}'><i class='fa-solid fa-trash text-danger fa-2x'></a></td>";
 
                         echo "</tr>";
 

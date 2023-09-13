@@ -88,7 +88,7 @@ if (isset($_POST['apply'])) {
                         echo "<td class='text-center'><a href='commentaires.php?publier={$com_id}'><i class='fa-regular fa-thumbs-up fa-2x text-success'></a></td>";
                         echo "<td class='text-center'><a href='commentaires.php?masquer={$com_id}'><i class='fa-regular fa-thumbs-down text-danger fa-2x'></a></td>";
                         echo "<td class='text-center'><a href='commentaires.php?source=edit_commentaires&com_id={$com_id}'><i class='fa-solid fa-pen fa-2x'></a></td>";
-                        echo "<td class='text-center'><a href='commentaires.php?delete={$com_id}'><i class='fa-solid fa-trash text-danger fa-2x'></a></td>";
+                        echo "<td class='text-center'><a onClick=\"javascript: return confirm('etes vous sur de vouloir supprimer ?')\" href='commentaires.php?delete={$com_id}'><i class='fa-solid fa-trash text-danger fa-2x'></a></td>";
 
                         echo "</tr>";
 

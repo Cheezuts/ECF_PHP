@@ -65,8 +65,7 @@ if(isset($_POST['checkBoxArray'])) {
                         echo "<td class='text-center'><img width='100' src='../images/$serv_image' alt='image'></td>";
                         echo "<td>$serv_contenu</td>";
                         echo "<td class='text-center'><a href='services.php?source=edit_services&p_id={$serv_id}'><i class='fa-solid fa-pen fa-2x'></a></td>";
-                        echo "<td class='text-center'><a href='services.php?delete={$serv_id}'><i class='fa-solid fa-trash text-danger fa-2x'></a></td>";
-
+                        echo "<td class='text-center'><a onClick=\"javascript: return confirm('etes vous sur de vouloir supprimer ?')\" href='services.php?delete={$serv_id}'><i class='fa-solid fa-trash text-danger fa-2x'></a></td>";
                         echo "</tr>";
 
                         }
