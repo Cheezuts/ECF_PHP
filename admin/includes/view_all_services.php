@@ -1,22 +1,22 @@
 <?php 
 if(isset($_POST['checkBoxArray'])) {
     foreach($_POST['checkBoxArray'] as $checkBoxValue) {
-        $bulk_options = $_POST['bulk_options'];
+        $bulk_options = escape($_POST['bulk_options']);
         switch($bulk_options) {
             case 'delete':
-                $query = "DELETE FROM services WHERE serv_id = {$checkBoxValue} ";
+                $query = "DELETE FROM services WHERE serv_id = " . escape($checkBoxValue);
                 $update_to_delete_status = mysqli_query($connection, $query);
                 confirmQuery($update_to_delete_status);
                 break;
                 
             case 'clone':
-                $query = "SELECT * FROM services WHERE serv_id = {$checkBoxValue} ";
+                $query = "SELECT * FROM services WHERE serv_id = " . escape($checkBoxValue);
                 $select_post_query = mysqli_query($connection, $query);
                 
                 while($row = mysqli_fetch_array($select_post_query)) {
-                    $serv_titre = $row['serv_titre'];
-                    $serv_image = $row['serv_image'];
-                    $serv_contenu = $row['serv_contenu'];
+                    $serv_titre = escape($row['serv_titre']);
+                    $serv_image = escape($row['serv_image']);
+                    $serv_contenu = escape($row['serv_contenu']);
                 }
                 
                 $query = "INSERT INTO services(serv_titre, serv_image, serv_contenu) ";
@@ -70,10 +70,10 @@ if(isset($_POST['checkBoxArray'])) {
                         $select_services = mysqli_query($connection, $query);
                     
                         while($row = mysqli_fetch_assoc($select_services)) {
-                        $serv_id = $row['serv_id'];
-                        $serv_titre = $row['serv_titre'];
-                        $serv_image = $row['serv_image'];
-                        $serv_contenu = $row['serv_contenu'];
+                        $serv_id = escape($row['serv_id']);
+                        $serv_titre = escape($row['serv_titre']);
+                        $serv_image = escape($row['serv_image']);
+                        $serv_contenu = escape($row['serv_contenu']);
 
                         echo "<tr>";
                         ?>
@@ -100,8 +100,8 @@ if(isset($_POST['checkBoxArray'])) {
                     <?php
                     
                     if(isset($_GET['delete'])) {
-                        $the_serv_id = $_GET['delete'];
-                        $query = "DELETE FROM services WHERE serv_id = {$the_serv_id} ";
+                        $the_serv_id = escape($_GET['delete']);
+                        $query = "DELETE FROM services WHERE serv_id = " . escape($the_serv_id);
                         $delete_query = mysqli_query($connection, $query);
                         header("Location: services.php");
 

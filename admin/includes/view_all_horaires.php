@@ -1,10 +1,10 @@
 <?php 
 if(isset($_POST['checkBoxArray'])) {
     foreach($_POST['checkBoxArray'] as $checkBoxValue) {
-        $bulk_options = $_POST['bulk_options'];
+        $bulk_options = escape($_POST['bulk_options']);
         switch($bulk_options) {
             case 'delete':
-                $query = "DELETE FROM horaires_semaine WHERE id = {$checkBoxValue} ";
+                $query = "DELETE FROM horaires_semaine WHERE id = " . escape($checkBoxValue);
                 $update_to_delete_status = mysqli_query($connection, $query);
                 confirmQuery($update_to_delete_status);
                 break;
@@ -52,14 +52,14 @@ if(isset($_POST['checkBoxArray'])) {
 
         while($row = mysqli_fetch_assoc($select_horaires)) {
             $id = $row['id'];
-            $statut = $row['statut'];
-            $lundi = $row['lundi'];
-            $mardi = $row['mardi'];
-            $mercredi = $row['mercredi'];
-            $jeudi = $row['jeudi'];
-            $vendredi = $row['vendredi'];
-            $samedi = $row['samedi'];
-            $dimanche = $row['dimanche'];
+            $statut = escape($row['statut']);
+            $lundi = escape($row['lundi']);
+            $mardi = escape($row['mardi']);
+            $mercredi = escape($row['mercredi']);
+            $jeudi = escape($row['jeudi']);
+            $vendredi = escape($row['vendredi']);
+            $samedi = escape($row['samedi']);
+            $dimanche = escape($row['dimanche']);
 
             echo "<tr>";
             ?>
@@ -87,8 +87,8 @@ if(isset($_POST['checkBoxArray'])) {
 
 <?php
 if(isset($_GET['delete'])) {
-    $the_id = $_GET['delete'];
-    $query = "DELETE FROM horaires_semaine WHERE id = {$the_id}";
+    $the_id = escape($_GET['delete']);
+    $query = "DELETE FROM horaires_semaine WHERE id = " . escape($the_id);
     $delete_query = mysqli_query($connection, $query);
     header("Location: horaires.php");
 }

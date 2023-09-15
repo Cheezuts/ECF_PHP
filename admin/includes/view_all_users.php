@@ -1,8 +1,10 @@
 <?php 
 
+
 if(isset($_POST['checkBoxArray'])) {
-    foreach($_POST['checkBoxArray'] as $userValueId) {
-        $bulk_options = $_POST['bulk_options'];
+    $checkBoxArray = escape($_POST['checkBoxArray']);
+    foreach($checkBoxArray as $userValueId) {
+        $bulk_options = escape($_POST['bulk_options']);
 
         switch($bulk_options) {
             case 'admin':
@@ -46,60 +48,62 @@ if(isset($_POST['checkBoxArray'])) {
 </div>
 
 
-                        <thead>
-                            <tr>
-                            <th><input id="selectAllBoxes" type="checkbox"></th>
-                                <th>Id</th>
-                                <th>e-mail</th>
-                                <th>Password</th>
-                                <th>Rôle</th>
-                                <th>Editer</th>
-                                <th>Supprimer</th>
-                            </tr>
-                        </thead>
+<thead>
+    <tr>
+        <th><input id="selectAllBoxes" type="checkbox"></th>
+        <th>Id</th>
+        <th>e-mail</th>
+        <th>Password</th>
+        <th>Rôle</th>
+        <th>Editer</th>
+        <th>Supprimer</th>
+    </tr>
+</thead>
 
-                        <tbody>
+<tbody>
 
-                        <?php 
-                        $query = "SELECT * FROM admins";
-                        $select_users = mysqli_query($connection, $query);
-                    
-                        while($row = mysqli_fetch_assoc($select_users)) {
-                        $user_id = $row['user_id'];
-                        $user_email = $row['user_email'];
-                        $user_password = $row['user_password'];
-                        $user_role = $row['user_role'];
+<?php 
+$query = "SELECT * FROM admins";
+$select_users = mysqli_query($connection, $query);
 
-                        echo "<tr>";
-                        ?>
+while($row = mysqli_fetch_assoc($select_users)) {
+    $user_id = $row['user_id'];
+    $user_email = $row['user_email'];
+    $user_password = $row['user_password'];
+    $user_role = $row['user_role'];
 
-                        <td><input class='checkBoxes' type='checkbox' name='checkBoxArray[]' value='<?php echo $user_id ?>'></td>
+    echo "<tr>";
+    ?>
 
-                        <?php
-                        echo "<td>$user_id</td>";
-                        echo "<td>$user_email</td>";
-                        echo "<td>$user_password</td>";
-                        echo "<td>$user_role</td>";
-                        echo "<td class='text-center'><a href='users.php?source=edit_users&user_id={$user_id}'><i class='fa-solid fa-pen fa-2x'></a></td>";
-                        echo "<td class='text-center'><a onClick=\"javascript: return confirm('etes vous sur de vouloir supprimer ?')\" href='users.php?delete={$user_id}'><i class='fa-solid fa-trash text-danger fa-2x'></a></td>";
+    <td><input class='checkBoxes' type='checkbox' name='checkBoxArray[]' value='<?php echo $user_id ?>'></td>
 
-                        echo "</tr>";
+    <?php
+    echo "<td>$user_id</td>";
+    echo "<td>$user_email</td>";
+    echo "<td>$user_password</td>";
+    echo "<td>$user_role</td>";
+    echo "<td class='text-center'><a href='users.php?source=edit_users&user_id={$user_id}'><i class='fa-solid fa-pen fa-2x'></a></td>";
+    echo "<td class='text-center'><a onClick=\"javascript: return confirm('etes vous sur de vouloir supprimer ?')\" href='users.php?delete={$user_id}'><i class='fa-solid fa-trash text-danger fa-2x'></a></td>";
 
-                        }
-                        
-                        ?>
+    echo "</tr>";
+}
 
-                    </table>
-                    </form>
+?>
 
-                    <?php
-                    
-                    if(isset($_GET['delete'])) {
-                        $the_user_id = $_GET['delete'];
-                        $query = "DELETE FROM admins WHERE user_id = {$the_user_id} ";
-                        $delete_query = mysqli_query($connection, $query);
-                        header("Location: users.php");
+</table>
+</form>
 
-                    }  
+<?php
 
-                    ?>
+if(isset($_GET['delete'])) {
+    if(isset($_SESSION['user_role'])) {
+        if($_SESSION['user_role'] == 'admin') {
+            $the_user_id = escape($_GET['delete']);
+            $query = "DELETE FROM admins WHERE user_id = {$the_user_id} ";
+            $delete_query = mysqli_query($connection, $query);
+            header("Location: users.php");
+        }
+    }
+}  
+
+?>

@@ -1,28 +1,28 @@
 <?php 
 if(isset($_POST['checkBoxArray'])) {
     foreach($_POST['checkBoxArray'] as $voitureValueId) {
-        $bulk_options = $_POST['bulk_options'];
+        $bulk_options = escape($_POST['bulk_options']);
         switch($bulk_options) {
             case 'delete':
-                $query = "DELETE FROM voitures WHERE voiture_id = {$voitureValueId} ";
+                $query = "DELETE FROM voitures WHERE voiture_id = " . escape($voitureValueId);
                 $delete_query = mysqli_query($connection, $query);
                 header("Location: voitures.php");
                 break;
 
             case 'clone':
-                $query = "SELECT * FROM voitures WHERE voiture_id = {$voitureValueId} ";
+                $query = "SELECT * FROM voitures WHERE voiture_id = " . escape($voitureValueId);
                 $select_voitures_query = mysqli_query($connection, $query);
 
                 while($row = mysqli_fetch_array($select_voitures_query)) {
-                    $marque = $row['marque'];
-                    $modele = $row['modele'];
-                    $annee = $row['annee_mise_en_circulation'];
-                    $carburant = $row['carburant'];
-                    $kilometrage = $row['kilometrage'];
-                    $prix = $row['prix'];
-                    $description = $row['description'];
-                    $image = $row['image'];
-                    $photos = $row['photos'];
+                    $marque = escape($row['marque']);
+                    $modele = escape($row['modele']);
+                    $annee = escape($row['annee_mise_en_circulation']);
+                    $carburant = escape($row['carburant']);
+                    $kilometrage = escape($row['kilometrage']);
+                    $prix = escape($row['prix']);
+                    $description = escape($row['description']);
+                    $image = escape($row['image']);
+                    $photos = escape($row['photos']);
                 }
 
                 $query = "INSERT INTO voitures(marque, modele, annee_mise_en_circulation, carburant, kilometrage, prix, description, image, photos) ";
@@ -110,9 +110,9 @@ if(isset($_POST['checkBoxArray'])) {
             echo "<td>$description</td>";
             echo "<td class='text-center'><img width='100' src='../images/$image' alt='image'></td>";
             echo "<td class='text-center'><img width='100' src='../images/$photos' alt='image'></td>";
-            echo "<td class='text-center'><a href='../details.php?id={$voiture_id}'><i class='fa-solid fa-eye fa-2x'></i></a></td>";
-            echo "<td class='text-center'><a href='voitures.php?source=edit_voitures&p_id={$voiture_id}'><i class='fa-solid fa-pen fa-2x'></i></a></td>";
-            echo "<td class='text-center'><a onClick=\"javascript: return confirm('etes vous sur de vouloir supprimer ?')\" href='voitures.php?delete={$voiture_id}'><i class='fa-solid fa-trash text-danger fa-2x'></i></a></td>";
+            echo "<td class='text-center'><a href='../details.php?id=" . escape($voiture_id) . "'><i class='fa-solid fa-eye fa-2x'></i></a></td>";
+            echo "<td class='text-center'><a href='voitures.php?source=edit_voitures&p_id=" . escape($voiture_id) . "'><i class='fa-solid fa-pen fa-2x'></i></a></td>";
+            echo "<td class='text-center'><a onClick=\"javascript: return confirm('etes vous sur de vouloir supprimer ?')\" href='voitures.php?delete=" . escape($voiture_id) . "'><i class='fa-solid fa-trash text-danger fa-2x'></i></a></td>";
             echo "</tr>";
         }
 ?>
@@ -123,7 +123,7 @@ if(isset($_POST['checkBoxArray'])) {
                     <?php
                     
                     if(isset($_GET['delete'])) {
-                        $the_voiture_id = $_GET['delete'];
+                        $the_voiture_id = escape($_GET['delete']);
                         $query = "DELETE FROM voitures WHERE voiture_id = {$the_voiture_id} ";
                         $delete_query = mysqli_query($connection, $query);
                         header("Location: voitures.php");

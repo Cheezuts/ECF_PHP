@@ -1,55 +1,46 @@
 <?php
-
-
-if(isset($_GET['p_id'])) {
-    $the_serv_id = $_GET['p_id'];
+if (isset($_GET['p_id'])) {
+    $the_serv_id = escape($_GET['p_id']);
 }
 
-    $query = "SELECT * FROM services WHERE serv_id = $the_serv_id";
-    $select_services_by_id = mysqli_query($connection, $query);
-    
-    while($row = mysqli_fetch_assoc($select_services_by_id)) {
-        $serv_id = $row['serv_id'];
-        $serv_titre = $row['serv_titre'];
-        $serv_image = $row['serv_image'];
-        $serv_contenu = $row['serv_contenu'];
+$query = "SELECT * FROM services WHERE serv_id = $the_serv_id";
+$select_services_by_id = mysqli_query($connection, $query);
 
-    }
+while ($row = mysqli_fetch_assoc($select_services_by_id)) {
+    $serv_id = $row['serv_id'];
+    $serv_titre = escape($row['serv_titre']);
+    $serv_image = escape($row['serv_image']);
+    $serv_contenu = escape($row['serv_contenu']);
+}
 
-    if(isset($_POST['update_serv'])) {
-        
-        $serv_titre = $_POST['titre'];
-        $serv_image = $_FILES['image']['name'];
-        $serv_image_temp = $_FILES['image']['tmp_name'];
-        $serv_contenu =nl2br($_POST['contenu']);
-        
-        move_uploaded_file($serv_image_temp, "../images/$serv_image");
-        
-        if(empty($serv_image)) {
-            
-            $query = "SELECT * FROM services WHERE serv_id = $the_serv_id ";
-            $select_image = mysqli_query($connection, $query);
-            
-            while($row = mysqli_fetch_array($select_image)) {
-                
-                $serv_image = $row['serv_image'];
-                
-            }
-            
+if (isset($_POST['update_serv'])) {
+    $serv_titre = escape($_POST['titre']);
+    $serv_image = escape($_FILES['image']['name']);
+    $serv_image_temp = escape($_FILES['image']['tmp_name']);
+    $serv_contenu = nl2br(escape($_POST['contenu']));
+
+    move_uploaded_file($serv_image_temp, "../images/$serv_image");
+
+    if (empty($serv_image)) {
+        $query = "SELECT * FROM services WHERE serv_id = $the_serv_id";
+        $select_image = mysqli_query($connection, $query);
+
+        while ($row = mysqli_fetch_array($select_image)) {
+            $serv_image = $row['serv_image'];
         }
-        
-        $query = "UPDATE services SET ";
-        $query .= "serv_titre = '{$serv_titre}', ";
-        $query .= "serv_image = '{$serv_image}', ";
-        $query .= "serv_contenu = '{$serv_contenu}' ";
-        $query .= "WHERE serv_id = {$the_serv_id} ";
-        
-        $update_serv = mysqli_query($connection, $query);
-        
-        confirmQuery($update_serv);        
-        echo "<p class='bg-success'>Service mis à jour! <a href='services.php?p_id={$the_serv_id}'>Retour à tous les services</a> ou retourner à l'<a href='index.php'>ACCUEIL</a></p>";
-        
     }
+
+    $query = "UPDATE services SET ";
+    $query .= "serv_titre = '{$serv_titre}', ";
+    $query .= "serv_image = '{$serv_image}', ";
+    $query .= "serv_contenu = '{$serv_contenu}' ";
+    $query .= "WHERE serv_id = {$the_serv_id} ";
+
+    $update_serv = mysqli_query($connection, $query);
+
+    confirmQuery($update_serv);
+    echo "<p class='bg-success'>Service mis à jour! <a href='services.php?p_id={$the_serv_id}'>Retour à tous les services</a> ou retourner à l'<a href='index.php'>ACCUEIL</a></p>";
+}
 ?>
 
 <form action="" method="post" enctype="multipart/form-data">

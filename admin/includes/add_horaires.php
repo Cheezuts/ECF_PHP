@@ -1,30 +1,24 @@
 <?php
 
-    if(isset($_POST['create_horaires'])) {
-        
-        $statut = $_POST['statut'];
-        $lundi = $_POST['lundi'];
-        $mardi = $_POST['mardi'];
-        $mercredi = $_POST['mercredi'];
-        $jeudi = $_POST['jeudi'];
-        $vendredi = $_POST['vendredi'];
-        $samedi = $_POST['samedi'];
-        $dimanche = $_POST['dimanche'];
-        
-                
-                
-            
-            
-        $query = "INSERT INTO horaires_semaine (statut, lundi, mardi, mercredi, jeudi, vendredi, samedi, dimanche) ";
-        $query .= "VALUES ('$statut', '$lundi', '$mardi', '$mercredi', '$jeudi', '$vendredi', '$samedi', '$dimanche')";
+if (isset($_POST['create_horaires'])) {
+    $statut = escape($_POST['statut']);
+    $lundi = escape($_POST['lundi']);
+    $mardi = escape($_POST['mardi']);
+    $mercredi = escape($_POST['mercredi']);
+    $jeudi = escape($_POST['jeudi']);
+    $vendredi = escape($_POST['vendredi']);
+    $samedi = escape($_POST['samedi']);
+    $dimanche = escape($_POST['dimanche']);
 
-        $create_horaires_query = mysqli_query($connection, $query);
-            
-        confirmQuery($create_horaires_query);
-            
-        header("Location: horaires.php");
+    $query = "INSERT INTO horaires_semaine (statut, lundi, mardi, mercredi, jeudi, vendredi, samedi, dimanche) ";
+    $query .= "VALUES ('$statut', '$lundi', '$mardi', '$mercredi', '$jeudi', '$vendredi', '$samedi', '$dimanche')";
 
-    }
+    $create_horaires_query = mysqli_query($connection, $query);
+
+    confirmQuery($create_horaires_query);
+
+    header("Location: horaires.php");
+}
 
 ?>
 

@@ -1,25 +1,25 @@
 <?php
 if (isset($_GET['com_id'])) {
-    $the_comment_id = $_GET['com_id'];
+    $the_comment_id = escape($_GET['com_id']);
 }
 
 $query = "SELECT * FROM commentaires WHERE com_id = $the_comment_id";
 $select_comment_by_id = mysqli_query($connection, $query);
 
 while ($row = mysqli_fetch_assoc($select_comment_by_id)) {
-    $com_nom = $row['com_nom'];
-    $com_prenom = $row['com_prenom'];
-    $com_commentaire = $row['com_commentaire'];
-    $com_note = $row['com_note'];
-    $com_status = $row['com_status'];
+    $com_nom = escape($row['com_nom']);
+    $com_prenom = escape($row['com_prenom']);
+    $com_commentaire = nl2br(escape($row['com_commentaire']));
+    $com_note = escape($row['com_note']);
+    $com_status = escape($row['com_status']);
 }
 
 if (isset($_POST['update_comment'])) {
-    $com_nom = $_POST['com_nom'];
-    $com_prenom = $_POST['com_prenom'];
-    $com_commentaire = nl2br($_POST['com_commentaire']);
-    $com_note = $_POST['com_note'];
-    $com_status = $_POST['com_status'];
+    $com_nom = escape($_POST['com_nom']);
+    $com_prenom = escape($_POST['com_prenom']);
+    $com_commentaire = nl2br(escape($_POST['com_commentaire']));
+    $com_note = escape($_POST['com_note']);
+    $com_status = escape($_POST['com_status']);
 
     $query = "UPDATE commentaires SET ";
     $query .= "com_nom = '{$com_nom}', ";
@@ -55,8 +55,15 @@ if (isset($_POST['update_comment'])) {
 
     <div class="form-group">
         <label for="com_note">Note</label>
-        <input value="<?php echo $com_note; ?>" type="number" class="form-control" name="com_note" min="1" max="5">
+        <select name="com_note" class="form-control">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
     </div>
+    
 
     <div class="form-group">
         <label for="com_status">Statut</label>

@@ -1,55 +1,57 @@
 <?php
-if(isset($_GET['p_id'])) {
-    $the_voiture_id = $_GET['p_id'];
+if (isset($_GET['p_id'])) {
+    $the_voiture_id = escape($_GET['p_id']);
 }
 
 $query = "SELECT * FROM voitures WHERE voiture_id = $the_voiture_id";
 $select_voiture_by_id = mysqli_query($connection, $query);
 
-while($row = mysqli_fetch_assoc($select_voiture_by_id)) {
+while ($row = mysqli_fetch_assoc($select_voiture_by_id)) {
     $voiture_id = $row['voiture_id'];
-    $marque = $row['marque'];
-    $modele = $row['modele'];
-    $annee = $row['annee_mise_en_circulation'];
-    $carburant = $row['carburant'];
-    $kilometrage = $row['kilometrage'];
-    $prix = $row['prix'];
-    $description = $row['description'];
-    $image = $row['image'];
-    $photos = $row['photos'];
+    $marque = escape($row['marque']);
+    $modele = escape($row['modele']);
+    $annee = escape($row['annee_mise_en_circulation']);
+    $carburant = escape($row['carburant']);
+    $kilometrage = escape($row['kilometrage']);
+    $prix = escape($row['prix']);
+    $description = escape($row['description']);
+    $image = escape($row['image']);
+    $photos = escape($row['photos']);
 }
 
-if(isset($_POST['update_voiture'])) {
-    $marque = $_POST['marque'];
-    $modele = $_POST['modele'];
-    $annee = $_POST['annee'];
-    $carburant = $_POST['carburant'];
-    $kilometrage = $_POST['kilometrage'];
-    $prix = $_POST['prix'];
-    $description = nl2br($_POST['description']);
-    $image = $_FILES['image']['name'];
-    $image_temp = $_FILES['image']['tmp_name'];
-    $photos = $_FILES['photos']['name'];
+if (isset($_POST['update_voiture'])) {
+    $marque = escape($_POST['marque']);
+    $modele = escape($_POST['modele']);
+    $annee = escape($_POST['annee']);
+    $carburant = escape($_POST['carburant']);
+    $kilometrage = escape($_POST['kilometrage']);
+    $prix = escape($_POST['prix']);
+    $description = nl2br(escape($_POST['description']));
+    $image = escape($_FILES['image']['name']);
+    $image_temp = escape($_FILES['image']['tmp_name']);
+    $photos = escape($_FILES['photos']['name']);
     $photos_temp = $_FILES['photos']['tmp_name'];
 
+
+
     // Gestion de l'image principale
-    if(!empty($image)) {
-        move_uploaded_file($image_temp, "../images/$image");
+    if (!empty($image)) {
+        move_uploaded_file($image_temp, "../images/" . escape($image));
     } else {
         $query = "SELECT image FROM voitures WHERE voiture_id = $the_voiture_id";
         $select_image = mysqli_query($connection, $query);
 
-        if($row = mysqli_fetch_assoc($select_image)) {
+        if ($row = mysqli_fetch_assoc($select_image)) {
             $image = $row['image'];
         }
     }
 
     // Gestion des photos supplémentaires
-    if(empty($photos)) {
+    if (empty($photos)) {
         $query = "SELECT photos FROM voitures WHERE voiture_id = $the_voiture_id";
         $select_photos = mysqli_query($connection, $query);
 
-        if($row = mysqli_fetch_assoc($select_photos)) {
+        if ($row = mysqli_fetch_assoc($select_photos)) {
             $photos = $row['photos'];
         }
     } else {
@@ -58,8 +60,8 @@ if(isset($_POST['update_voiture'])) {
 
         // Parcourir les photos supplémentaires
         foreach ($photos_temp as $key => $tmp_name) {
-            $photoName = $photos[$key];
-            $photoTemp = $photos_temp[$key];
+            $photoName = escape($photos[$key]);
+            $photoTemp = escape($photos_temp[$key]);
 
             // Déplacer et renommer les photos supplémentaires vers le dossier de destination
             $destination = "../images/" . $photoName;
@@ -74,16 +76,16 @@ if(isset($_POST['update_voiture'])) {
     }
 
     $query = "UPDATE voitures SET ";
-    $query .= "marque = '{$marque}', ";
-    $query .= "modele = '{$modele}', ";
-    $query .= "annee_mise_en_circulation = '{$annee}', ";
-    $query .= "carburant = '{$carburant}', ";
-    $query .= "kilometrage = '{$kilometrage}', ";
-    $query .= "prix = '{$prix}', ";
-    $query .= "description = '{$description}', ";
-    $query .= "image = '{$image}', ";
-    $query .= "photos = '{$photos}' ";
-    $query .= "WHERE voiture_id = {$the_voiture_id} ";
+    $query .= "marque = '" . escape($marque) . "', ";
+    $query .= "modele = '" . escape($modele) . "', ";
+    $query .= "annee_mise_en_circulation = '" . escape($annee) . "', ";
+    $query .= "carburant = '" . escape($carburant) . "', ";
+    $query .= "kilometrage = '" . escape($kilometrage) . "', ";
+    $query .= "prix = '" . escape($prix) . "', ";
+    $query .= "description = '" . escape($description) . "', ";
+    $query .= "image = '" . escape($image) . "', ";
+    $query .= "photos = '" . escape($photos) . "' ";
+    $query .= "WHERE voiture_id = " . escape($the_voiture_id);
 
     $update_voiture = mysqli_query($connection, $query);
 

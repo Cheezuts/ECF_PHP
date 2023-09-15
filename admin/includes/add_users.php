@@ -1,17 +1,17 @@
 <?php
 if (isset($_POST['create_user'])) {
-    $user_email = $_POST['user_email'];
-    $user_password = $_POST['user_password'];
-    $user_role = $_POST['user_role'];
-    
+    $user_email = escape($_POST['user_email']);
+    $user_password = escape($_POST['user_password']);
+    $user_role = escape($_POST['user_role']);
+
     $hashed_password = password_hash($user_password, PASSWORD_DEFAULT);
-    
+
     $query = "INSERT INTO admins (user_email, user_password, user_role) ";
     $query .= "VALUES ('$user_email', '$hashed_password', '$user_role')";
     $create_user_query = mysqli_query($connection, $query);  
-    
-        confirmQuery($create_user_query);
-        echo "<div class='alert alert-success'>Utilisateur créé: <a href='users.php'>Voir les utilisateurs</a></div>";
+
+    confirmQuery($create_user_query);
+    echo "<div class='alert alert-success'>Utilisateur créé: <a href='users.php'>Voir les utilisateurs</a></div>";
 }
 ?>
 

@@ -1,21 +1,21 @@
 <?php
 if (isset($_GET['user_id'])) {
-    $the_user_id = $_GET['user_id'];
+    $the_user_id = escape($_GET['user_id']);
     $query = "SELECT * FROM admins WHERE user_id = $the_user_id";
     $select_users_query = mysqli_query($connection, $query);
     confirmQuery($select_users_query);
     while ($row = mysqli_fetch_assoc($select_users_query)) {
         $user_id = $row['user_id'];
-        $user_email = $row['user_email'];
-        $user_password = $row['user_password'];
-        $user_role = $row['user_role'];
+        $user_email = escape($row['user_email']);
+        $user_password = escape($row['user_password']);
+        $user_role = escape($row['user_role']);
     }
 }
 
 if (isset($_POST['update_user'])) {
-    $user_email = $_POST['user_email'];
-    $user_password = $_POST['user_password'];
-    $user_role = $_POST['user_role'];
+    $user_email = escape($_POST['user_email']);
+    $user_password = escape($_POST['user_password']);
+    $user_role = escape($_POST['user_role']);
 
     // Hachage du mot de passe
     $hashed_password = password_hash($user_password, PASSWORD_BCRYPT);

@@ -1,5 +1,14 @@
 <?php 
 
+function escape($value) {
+    if (is_array($value)) {
+        return array_map('escape', $value);
+    } else {
+        global $connection;
+        return mysqli_real_escape_string($connection, trim($value));
+    }
+}
+
 function confirmQuery($result) {
     global $connection;
     if(!$result ) {
@@ -54,5 +63,5 @@ function deletenavigation() {
     }  
     }
 
-                         
+
 ?>

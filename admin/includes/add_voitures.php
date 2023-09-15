@@ -2,15 +2,15 @@
 
 if (isset($_POST['create_voiture'])) {
     // Récupération des données du formulaire
-    $marque = $_POST['marque'];
-    $modele = $_POST['modele'];
-    $annee = $_POST['annee'];
-    $carburant = $_POST['carburant'];
-    $kilometrage = $_POST['kilometrage'];
-    $prix = $_POST['prix'];
-    $description = nl2br($_POST['description']);
-    $image = $_FILES['image']['name'];
-    $image_temp = $_FILES['image']['tmp_name'];
+    $marque = escape($_POST['marque']);
+    $modele = escape($_POST['modele']);
+    $annee = escape($_POST['annee']);
+    $carburant = escape($_POST['carburant']);
+    $kilometrage = escape($_POST['kilometrage']);
+    $prix = escape($_POST['prix']);
+    $description = nl2br(escape($_POST['description']));
+    $image = escape($_FILES['image']['name']);
+    $image_temp = escape($_FILES['image']['tmp_name']);
 
     // Stockage des photos supplémentaires
     $additionalPhotos = $_FILES['photos'];
@@ -20,8 +20,8 @@ if (isset($_POST['create_voiture'])) {
 
     // Parcourir les photos supplémentaires
     foreach ($additionalPhotos['tmp_name'] as $key => $tmp_name) {
-        $photoName = $additionalPhotos['name'][$key];
-        $photoTemp = $additionalPhotos['tmp_name'][$key];
+        $photoName = escape($additionalPhotos['name'][$key]);
+        $photoTemp = escape($additionalPhotos['tmp_name'][$key]);
 
         // Déplacer et renommer les photos supplémentaires vers le dossier de destination
         $destination = "../images/" . $photoName;
