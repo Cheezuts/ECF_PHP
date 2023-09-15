@@ -7,7 +7,28 @@ if(isset($_POST['checkBoxArray'])) {
                 $query = "DELETE FROM services WHERE serv_id = {$checkBoxValue} ";
                 $update_to_delete_status = mysqli_query($connection, $query);
                 confirmQuery($update_to_delete_status);
-                break;            
+                break;
+                
+            case 'clone':
+                $query = "SELECT * FROM services WHERE serv_id = {$checkBoxValue} ";
+                $select_post_query = mysqli_query($connection, $query);
+                
+                while($row = mysqli_fetch_array($select_post_query)) {
+                    $serv_titre = $row['serv_titre'];
+                    $serv_image = $row['serv_image'];
+                    $serv_contenu = $row['serv_contenu'];
+                }
+                
+                $query = "INSERT INTO services(serv_titre, serv_image, serv_contenu) ";
+                $query .= "VALUES('{$serv_titre}', '{$serv_image}', '{$serv_contenu}') "; 
+                
+                $copy_query = mysqli_query($connection, $query);   
+                
+                if(!$copy_query ) {
+                    die("QUERY FAILED" . mysqli_error($connection));
+                }
+                
+                break;
         }
     }
 }
@@ -20,6 +41,7 @@ if(isset($_POST['checkBoxArray'])) {
         <select name="bulk_options" id="bulk_options" class="form-control">
             <option value="">Selectionnez une option</option>
             <option value="delete">Supprimer</option>
+            <option value="clone">Cloner</option>
         </select>
 </div>
 
@@ -44,7 +66,7 @@ if(isset($_POST['checkBoxArray'])) {
                         <tbody>
 
                         <?php 
-                        $query = "SELECT * FROM services";
+                        $query = "SELECT * FROM services ORDER BY serv_id DESC";
                         $select_services = mysqli_query($connection, $query);
                     
                         while($row = mysqli_fetch_assoc($select_services)) {

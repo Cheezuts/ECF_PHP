@@ -7,35 +7,35 @@
     ?>
 
 
-    <?php
-    
-    if(isset($_POST['create_comment'])) {
-        $com_nom = $_POST['com_nom'];
-        $com_prenom = $_POST['com_prenom'];
-        $com_commentaire = nl2br($_POST['com_commentaire']);
-        $com_note = $_POST['com_note'];
+<?php
+if (isset($_POST['create_comment'])) {
+    $com_nom = $_POST['com_nom'];
+    $com_prenom = $_POST['com_prenom'];
+    $com_commentaire = nl2br($_POST['com_commentaire']);
+    $com_note = $_POST['com_note'];
 
-        if(!empty($com_nom) && !empty($com_prenom) && !empty($com_commentaire) && !empty($com_note)){
-            $com_nom = mysqli_real_escape_string($connection, $com_nom);
-            $com_prenom = mysqli_real_escape_string($connection, $com_prenom);
-            $com_commentaire = mysqli_real_escape_string($connection, $com_commentaire);
-            $com_note = mysqli_real_escape_string($connection, $com_note);
-        } else {
-            echo "<script>alert('Tous les champs doivent être remplis')</script>";
+    // Validation des champs obligatoires
+    if (!empty($com_nom) && !empty($com_prenom) && !empty($com_commentaire) && !empty($com_note)) {
+        $com_nom = mysqli_real_escape_string($connection, $com_nom);
+        $com_prenom = mysqli_real_escape_string($connection, $com_prenom);
+        $com_commentaire = mysqli_real_escape_string($connection, $com_commentaire);
+        $com_note = mysqli_real_escape_string($connection, $com_note);
 
-        }
-
-    
         $query = "INSERT INTO commentaires (com_nom, com_prenom, com_commentaire, com_note, com_status) ";
         $query .= "VALUES ('{$com_nom}', '{$com_prenom}', '{$com_commentaire}', '{$com_note}', 'masquer') ";
-    
+
         $create_comment_query = mysqli_query($connection, $query);
-    
-        if(!$create_comment_query) {
+
+        if (!$create_comment_query) {
             die('QUERY FAILED' . mysqli_error($connection));
-        }    
-    }  
-    ?>
+        }
+
+        header("Location: commentaires.php");
+    } else {
+        echo "<div class='alert alert-warning text-center'><strong>Tous les champs doivent être remplis</strong></div>";
+    }
+}  
+?>
 
 <!-- Page Content -->
     <div class="row">

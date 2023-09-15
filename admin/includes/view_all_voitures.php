@@ -8,6 +8,33 @@ if(isset($_POST['checkBoxArray'])) {
                 $delete_query = mysqli_query($connection, $query);
                 header("Location: voitures.php");
                 break;
+
+            case 'clone':
+                $query = "SELECT * FROM voitures WHERE voiture_id = {$voitureValueId} ";
+                $select_voitures_query = mysqli_query($connection, $query);
+
+                while($row = mysqli_fetch_array($select_voitures_query)) {
+                    $marque = $row['marque'];
+                    $modele = $row['modele'];
+                    $annee = $row['annee_mise_en_circulation'];
+                    $carburant = $row['carburant'];
+                    $kilometrage = $row['kilometrage'];
+                    $prix = $row['prix'];
+                    $description = $row['description'];
+                    $image = $row['image'];
+                    $photos = $row['photos'];
+                }
+
+                $query = "INSERT INTO voitures(marque, modele, annee_mise_en_circulation, carburant, kilometrage, prix, description, image, photos) ";
+                $query .= "VALUES('{$marque}', '{$modele}', '{$annee}', '{$carburant}', '{$kilometrage}', '{$prix}', '{$description}', '{$image}', '{$photos}') "; 
+
+                $copy_query = mysqli_query($connection, $query);   
+
+                if(!$copy_query ) {
+                    die("QUERY FAILED" . mysqli_error($connection));
+                }
+
+                break;
         }
     }
 }
@@ -21,6 +48,7 @@ if(isset($_POST['checkBoxArray'])) {
         <select name="bulk_options" id="bulk_options" class="form-control">
             <option value="">Selectionnez une option</option>
             <option value="delete">Supprimer</option>
+            <option value="clone">Cloner</option>
         </select>
 </div>
 

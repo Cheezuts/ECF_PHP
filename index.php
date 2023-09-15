@@ -10,39 +10,45 @@ include "includes/navigation.php";
 
     <!-- Page Content -->
     <div class="container">
-            <!-- Form login -->
-            <div class="row">
-                    <div class="col-md-4 col-md-offset-3 well">
-                        <h4 class="text-center">Connection :</h4>
+
             
-                        <form action="includes/login.php" method="post"class="form">            
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="user_email" placeholder="Votre email">                
-                            </div>
-            
-                            <div class="input-group">
-                    <input name="user_password" type="password" class="form-control" placeholder="Mot de passe">
-                    <span class="input-group-btn">
-                    <button class="btn btn-primary" name="login" type="submit">Envoyer
-                    </button>
-                    </span>
-                </div>
-            
-                        </form>
-                    </div>
-            </div> 
-            
-            <!-- Fin form login -->
 
         <div class="row">
 
             <!-- Blog Entries Column -->
-            <div class="col-md-8">
+            <div class="col-md-9">
 
                 
 
             <?php 
-            $query = "SELECT * FROM services";
+
+            $per_page = 3;
+
+            if (isset($_GET['page'])) {
+                $page = $_GET['page'];
+            } else {
+                $page = "";
+            }
+
+            if ($page == "" || $page == 1) {
+                $page_1 = 0;
+            } else {
+                $page_1 = ($page * $per_page) - $per_page;
+            }
+            
+
+            $select_serv_count = "SELECT * FROM services";
+            $serv_count_query = mysqli_query($connection, $select_serv_count);
+            $total_services = mysqli_num_rows($serv_count_query);
+            $count = ceil($total_services / $per_page);                                 // Calculer le nombre total de pages
+
+            if ($count == 0) {
+                echo "<h1 class='text-center'>Aucun service disponible</h1>";
+            } else {
+                echo "<h1 class='text-center'>Nos services</h1>";
+            }
+
+            $query = "SELECT * FROM services LIMIT $page_1, $per_page";
             $select_all_services_query = mysqli_query($connection, $query);
 
             while ($row = mysqli_fetch_assoc($select_all_services_query)) {
@@ -72,6 +78,27 @@ include "includes/navigation.php";
             ?>  
                 
             <hr>
+            <!-- Pagination -->
+
+            <ul class="pager">
+
+                <?php 
+
+                for ($i = 1; $i <= $count; $i++) {
+
+                    if ($i == $page) {
+                        echo "<li><a class='active_link' href='index.php?page={$i}'>{$i}</a></li>";
+                    } else {
+                        echo "<li><a href='index.php?page={$i}'>{$i}</a></li>";
+                    }                
+                }
+
+                ?>
+            </ul>
+            
+
+
+            <!-- Commentaires -->
             <h1 class="text-center">Commentaires : </h1>
             <!-- Posted Comments -->
 <?php 
@@ -119,6 +146,30 @@ while ($row = mysqli_fetch_assoc($select_commentaires_query)) {
 
             
         </div>
+
+        <!-- Form login -->
+
+        <div class="col-md-3 well">
+                        <h4 class="text-center">Connection :</h4>
+            
+                        <form action="includes/login.php" method="post"class="form">            
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="user_email" placeholder="Votre email">                
+                            </div>
+            
+                            <div class="input-group">
+                    <input name="user_password" type="password" class="form-control" placeholder="Mot de passe">
+                    <span class="input-group-btn">
+                    <button class="btn btn-primary" name="login" type="submit">Envoyer
+                    </button>
+                    </span>
+                </div>
+            
+                        </form>
+        </div>
+            <!-- Fin form login -->
+
+    </div>
 
         <!-- Footer -->
 <?php include "includes/footer.php"; ?>

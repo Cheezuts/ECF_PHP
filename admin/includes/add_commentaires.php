@@ -6,14 +6,46 @@ if (isset($_POST['add_comment'])) {
     $com_note = $_POST['com_note'];
     $com_status = $_POST['com_status'];
 
-    $query = "INSERT INTO commentaires (com_nom, com_prenom, com_commentaire, com_note, com_status) ";
-    $query .= "VALUES ('{$com_nom}', '{$com_prenom}', '{$com_commentaire}', '{$com_note}', '{$com_status}') ";
+    $errors = [];
 
-    $add_comment = mysqli_query($connection, $query);
+    // Validation des champs
+    if (empty($com_nom) || empty($com_prenom) || empty($com_commentaire) || empty($com_status) || empty($com_note) || $com_note < 1 || $com_note > 5) {
+        if (empty($com_nom)) {
+            $errors[] = "Le champ 'Nom' est obligatoire.";
+        }
 
-    confirmQuery($add_comment);
+        if (empty($com_prenom)) {
+            $errors[] = "Le champ 'Prénom' est obligatoire.";
+        }
 
-    header("Location: commentaires.php");
+        if (empty($com_commentaire)) {
+            $errors[] = "Le champ 'Commentaire' est obligatoire.";
+        }
+
+        if (empty($com_note) || $com_note < 1 || $com_note > 5) {
+            $errors[] = "La note doit être comprise entre 1 et 5.";
+        }
+
+        if (empty($com_status)) {
+            $errors[] = "Le champ 'Statut' est obligatoire.";
+        }
+
+        // Afficher les messages d'erreur
+        echo "<div class='alert alert-warning text-center'>";
+        foreach ($errors as $error) {
+            echo "<p><strong>$error</strong></p>";
+        }
+        echo "</div>";
+    } else {
+        $query = "INSERT INTO commentaires (com_nom, com_prenom, com_commentaire, com_note, com_status) ";
+        $query .= "VALUES ('{$com_nom}', '{$com_prenom}', '{$com_commentaire}', '{$com_note}', '{$com_status}') ";
+
+        $add_comment = mysqli_query($connection, $query);
+
+        confirmQuery($add_comment);
+
+        header("Location: commentaires.php");
+    }
 }
 ?>
 

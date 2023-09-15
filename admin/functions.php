@@ -52,6 +52,7 @@ function deletenavigation() {
         $delete_query = mysqli_query($connection, $query);
         header("Location: navigation.php");
     }  
-    }  
-                                
+    }
+
+                         
 ?>
