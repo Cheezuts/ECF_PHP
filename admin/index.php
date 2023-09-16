@@ -5,7 +5,12 @@
         <!-- Navigation -->
         <?php include "includes/admin_navigation.php"; ?>
 
-
+        // Vérification du message d'avertissement
+        <?php 
+if (isset($_GET['message']) && $_GET['message'] === 'not_authorized') {
+    echo '<div class="alert alert-warning text-center"><strong>Vous n\'êtes pas autorisé à accéder à Utilisateurs.</strong></div>';
+}
+?>
         <div id="page-wrapper">
 
             <div class="container-fluid">

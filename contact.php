@@ -10,7 +10,6 @@
     
     if(isset($_POST['envoyer'])) {
         $to = "tarasksoad@hotmail.com";
-        $subject = $_POST['com_sujet'];
         $nom = $_POST['com_nom'];
         $prenom = $_POST['com_prenom'];
         $email = $_POST['com_email'];
@@ -25,7 +24,7 @@
         
         $headers = "From: $email";
         
-        if(mail($to, $subject, $body, $headers)) {
+        if(mail($to, $body, $headers)) {
             echo "Message envoyé avec succès.";
         } else {
             echo "Une erreur s'est produite lors de l'envoi du message.";
@@ -63,12 +62,7 @@
                 <div class="form-group">
                     <label for="message">Message :</label>
                     <textarea class="form-control" id="message" name="com_message" rows="3" placeholder="Votre message"></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label for="sujet">Sujet du formulaire (annonce) :</label>
-                    <input type="text" class="form-control" id="sujet" name="com_sujet" placeholder="Sujet du formulaire">
-                </div>
+                </div>                
 
                 <button type="submit" name="envoyer" id="envoyer" class="btn btn-primary">Envoyer</button>
 

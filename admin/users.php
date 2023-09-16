@@ -1,5 +1,16 @@
 <?php include "includes/admin_header.php"; ?>
 
+<?php 
+
+// Vérification si l'utilisateur est administrateur
+if (!is_admin($_SESSION['user_email'])) {
+    // Redirection vers la page index.php avec un message d'avertissement
+    header("Location: index.php?message=not_authorized");
+    exit; // Arrêt de l'exécution du script pour éviter toute autre sortie indésirable
+}
+
+?>
+
     <div id="wrapper">
 
         <!-- Navigation -->

@@ -3,3 +3,29 @@
   border-color: yellow;
   color: black;
 }
+
+/* recherche */
+.filter-buttons {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.filter-buttons .filter-button {
+  margin-right: 10px;
+}
+
+.filter-fields {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.filter-fields .filter-min,
+.filter-fields .filter-max {
+  margin-right: 10px;
+}
+
+.filter-min-max {
+  display: none;
+}

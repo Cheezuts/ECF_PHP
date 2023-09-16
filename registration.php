@@ -2,6 +2,17 @@
 include "includes/db.php";
 include "includes/header.php";
 
+// Fonction username_exists
+function username_exists($username) {
+    global $connection;
+    $query = "SELECT user_email FROM admins WHERE user_email = '$username'";
+    $result = mysqli_query($connection, $query);
+    if (!$result) {
+        die("QUERY FAILED" . mysqli_error($connection));
+    }
+    return mysqli_num_rows($result) > 0;
+}
+
 if (isset($_POST['submit'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
@@ -10,20 +21,26 @@ if (isset($_POST['submit'])) {
         $email = mysqli_real_escape_string($connection, $email);
         $password = mysqli_real_escape_string($connection, $password);
 
-        // Vérification de la compatibilité Blowfish
-        $hash = password_hash($password, PASSWORD_BCRYPT);
-        if ($hash === false) {
-            die("L'algorithme Blowfish n'est pas pris en charge par votre installation de PHP.");
-        }
+        if (username_exists($email)) {
+            echo '<div class="alert alert-warning text-center">
+                    <strong>Attention!</strong> Cet email existe déjà.
+                </div>';
+        } else {
+            // Vérification de la compatibilité Blowfish
+            $hash = password_hash($password, PASSWORD_BCRYPT);
+            if ($hash === false) {
+                die("L'algorithme Blowfish n'est pas pris en charge par votre installation de PHP.");
+            }
 
-        $query = "INSERT INTO admins (user_email, user_password, user_role) ";
-        $query .= "VALUES ('{$email}', '{$hash}', 'user' ) ";
-        $register_user_query = mysqli_query($connection, $query);
-        if (!$register_user_query) {
-            die("QUERY FAILED" . mysqli_error($connection));
-        }
+            $query = "INSERT INTO admins (user_email, user_password, user_role) ";
+            $query .= "VALUES ('$email', '$hash', 'user' ) ";
+            $register_user_query = mysqli_query($connection, $query);
+            if (!$register_user_query) {
+                die("QUERY FAILED" . mysqli_error($connection));
+            }
 
-        $message = "Votre inscription a bien été prise en compte !";
+            $message = "Votre inscription a bien été prise en compte !";
+        }
     } else {
         echo '<div class="alert alert-warning text-center">
                 <strong>Attention!</strong> Tous les champs doivent être remplis.
@@ -31,6 +48,7 @@ if (isset($_POST['submit'])) {
         $message = "";
     }
 }
+
 ?>
 
 <!-- Navigation -->
