@@ -40,7 +40,7 @@ if (isset($_POST['create_comment'])) {
 <!-- Page Content -->
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <h4 class="text-center">Laissez un commentaire :</h4>
+            <h4 class="text-center">Laissez un avis :</h4>
     
             <form action="" method="post" role="form" class="form">
     
@@ -75,6 +75,43 @@ if (isset($_POST['create_comment'])) {
             </form>
         </div>
     </div>
+
+    <!-- Commentaires -->
+
+    <?php 
+
+$query = "SELECT * FROM commentaires WHERE com_status = 'publier'";
+$select_commentaires_query = mysqli_query($connection, $query);
+
+while ($row = mysqli_fetch_assoc($select_commentaires_query)) {
+    $com_nom = $row['com_nom'];
+    $com_prenom = $row['com_prenom'];
+    $com_commentaire = $row['com_commentaire'];
+    $com_note = $row['com_note'];
+
+    // Afficher les commentaires publiés
+    ?>
+<div class="well">
+<?php
+        // Boucle pour afficher les étoiles pleines
+        for ($i = 1; $i <= $com_note; $i++) {
+            echo '<i class="fas fa-star text-warning"></i>';
+        }
+
+        // Boucle pour afficher les étoiles vides (si nécessaire)
+        for ($i = $com_note + 1; $i <= 5; $i++) {
+            echo '<i class="far fa-star"></i>';
+        }
+    ?>
+    <h4><?php echo $com_nom . ' ' . $com_prenom; ?></h4>
+    <p><?php echo $com_commentaire; ?></p>
+    <div class="rating"></div>
+</div>
+<?php
+}
+?>
+    <!-- fin commentaires -->
+
 
 <h2 class="text-center">Horaires</h2>
 <?php include "includes/horaires.php" ?>

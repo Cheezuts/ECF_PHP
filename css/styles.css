@@ -1,7 +1,7 @@
 .pager li .active_link {
-  background-color: green;
-  border-color: yellow;
-  color: black;
+  background-color: #d92332;
+  border-color: #d92332;
+  color: #fff;
 }
 
 /* recherche */
@@ -29,3 +29,80 @@
 .filter-min-max {
   display: none;
 }
+
+/* Footer */
+
+.container.fixed-footer {
+  position: static;
+  padding-bottom: 160px; /* Ajustez la marge inférieure pour tenir compte de la hauteur du footer */
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #262526;
+  color: #f2f2f2;
+}
+
+/* Pour les appareils avec une largeur d'écran inférieure à 768px */
+@media (max-width: 767px) {
+  .footer {
+    height: 60px; /* Ajustez la hauteur pour les petits écrans */
+  }
+}
+
+/* Pour les appareils avec une largeur d'écran comprise entre 768px et 992px */
+@media (min-width: 768px) and (max-width: 992px) {
+  .footer {
+    height: 95px; /* Ajustez la hauteur pour les écrans moyens */
+  }
+  .mb-footer {
+    margin-bottom: 95px; /* Assurez-vous que cette valeur correspond à la hauteur du footer */
+  }
+}
+
+/* Pour les appareils avec une largeur d'écran supérieure à 992px */
+@media (min-width: 993px) {
+  .footer {
+    height: 60px; /* Ajustez la hauteur pour les grands écrans */
+  }
+  .mb-footer {
+    margin-bottom: 60px; /* Assurez-vous que cette valeur correspond à la hauteur du footer */
+  }
+}
+
+
+
+
+
+
+.footer
+span {
+  color: #262526;
+}
+
+body {
+  background-color: #f2f2f2;
+}
+
+.navbar.navbar-inverse .navbar-collapse,
+.navbar.navbar-inverse .navbar-form {
+  background-color: #262526;
+  border-color: #262526;
+}
+
+
+
+
+h1, h2, h3, h4, h5, h6 {
+color: #d92332;
+  font-family: 'Rajdhani', sans-serif;
+}
+
+p {
+  font-family: 'Barlow', sans-serif;
+}
+```
+

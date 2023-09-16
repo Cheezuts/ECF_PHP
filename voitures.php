@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
     <?php
     include "includes/db.php";
     include "includes/header.php";
@@ -45,36 +45,11 @@
     </div>
     <!-- FIN DE RECHERCHE -->
 
-    <?php
-    // Requête initiale pour récupérer toutes les voitures
-    $query = "SELECT * FROM voitures";
-    
-    // Vérification des filtres de recherche
-    if (isset($_POST['submit'])) {
-        $search = $_POST['search'];
-        $query .= " WHERE marque LIKE '%$search%' OR modele LIKE '%$search%'";
-        
-        if (isset($_POST['km-min']) && isset($_POST['km-max'])) {
-            $km_min = $_POST['km-min'];
-            $km_max = $_POST['km-max'];
-            $query .= " AND kilometrage BETWEEN $km_min AND $km_max";
-        }
-        
-        if (isset($_POST['prix-min']) && isset($_POST['prix-max'])) {
-            $prix_min = $_POST['prix-min'];
-            $prix_max = $_POST['prix-max'];
-            $query .= " AND prix BETWEEN $prix_min AND $prix_max";
-        }
-        
-        if (isset($_POST['annee-min']) && isset($_POST['annee-max'])) {
-            $annee_min = $_POST['annee-min'];
-            $annee_max = $_POST['annee-max'];
-            $query .= " AND annee_mise_en_circulation BETWEEN $annee_min AND $annee_max";
-        }
-    }
-    
-    $select_all_cars_query = mysqli_query($connection, $query);
 
+    <div class="row">
+    <?php
+    $query = "SELECT * FROM voitures";
+    $select_all_cars_query = mysqli_query($connection, $query);
     while ($row = mysqli_fetch_assoc($select_all_cars_query)) {
         $voiture_id = $row['voiture_id'];
         $marque = $row['marque'];
@@ -85,30 +60,34 @@
         $prix = $row['prix'];
         $image = $row['image'];
     ?>
-
-        <div class="panel panel-default col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xs-offset-0 col-sm-offset-0 col-md-offset-1 col-lg-offset-1" style="margin-bottom: 50px;">
-            <a href="details.php?id=<?php echo $voiture_id; ?>">
-                <img class="card-img-top p-2 m-2 img-fluid" src="images/<?php echo $image; ?>" style="width: 100%; height: 15vw; object-fit: cover;">
-            </a>
-            <div class="panel-heading p-2 m-2">
-                <h3 class="panel-title"><?php echo $marque . ' ' . $modele; ?></h3>
-            </div>
-            <div class="panel-body p-2 m-2">
-                <p>Année: <?php echo $annee; ?></p>
-                <p>Carburant: <?php echo $carburant; ?></p>
-                <p>Kilométrage: <?php echo $kilometrage; ?> km</p>
-                <p>Prix: <?php echo $prix; ?> €</p>
-                <div class="panel-footer text-center d-flex justify-content-center p-2">
-                    <a href="details.php?id=<?php echo $voiture_id; ?>" class="btn btn-primary">Détails</a>
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <a href="details.php?id=<?php echo $voiture_id; ?>">
+                    <img class="card-img-top p-2 m-2 img-fluid" src="images/<?php echo $image; ?>" style="width: 100%; height: 15vw; object-fit: cover;">
+                </a>
+                <div class="panel-heading p-2 m-2">
+                    <h3 class="panel-title"><?php echo $marque . ' ' . $modele; ?></h3>
+                </div>
+                <div class="panel-body p-2 m-2">
+                    <p>Année: <?php echo $annee; ?></p>
+                    <p>Carburant: <?php echo $carburant; ?></p>
+                    <p>Kilométrage: <?php echo $kilometrage; ?> km</p>
+                    <p>Prix: <?php echo $prix; ?> €</p>
+                    <div class="panel-footer text-center d-flex justify-content-center p-2">
+                        <a href="details.php?id=<?php echo $voiture_id; ?>" class="btn btn-primary">Détails</a>
+                    </div>
                 </div>
             </div>
         </div>
-
+    </div>
     <?php
     }
     ?>
+</div>
 
-    <div class="row"></div>
+    
+
     <h2 class="text-center">Horaires</h2>
     <?php include "includes/horaires.php" ?>
 

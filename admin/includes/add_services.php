@@ -6,7 +6,7 @@ if (isset($_POST['create_service'])) {
     $serv_image = escape($_FILES['image']['name']);
     $serv_image_temp = escape($_FILES['image']['tmp_name']);
     
-    $serv_contenu = escape($_POST['contenu']);
+    $serv_contenu = nl2br(escape($_POST['contenu']));
 
     move_uploaded_file($serv_image_temp, "../images/$serv_image");
 

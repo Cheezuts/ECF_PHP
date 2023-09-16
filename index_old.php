@@ -8,46 +8,20 @@ include "includes/header.php";
 include "includes/navigation.php";
 ?>
 
-
     <!-- Page Content -->
     <div class="container-fluid">
 
-<div class="row">
-
-    <div class="col-md-3 col-md-push-8 col-sm-12">
-
-    <!-- Formulaire de connexion -->
-    <div class="well">
-    <h4 class="text-center">Connection :</h4>
             
-            <form action="includes/login.php" method="post"class="form">            
-                <div class="form-group">
-                    <input type="text" class="form-control" name="user_email" placeholder="Votre email">                
-                </div>
 
-                <div class="input-group">
-                    <input name="user_password" type="password" class="form-control" placeholder="Mot de passe">
-                    <span class="input-group-btn">
-                    <button class="btn btn-primary" name="login" type="submit">Envoyer
-                    </button>
-                    </span>
-                </div>            
-            </form>
-        <!-- Votre formulaire de connexion ici -->
-    </div>
-    </div>
+        <div class="row">
 
-    </div>
+            <div class="col-md-2"></div>
+            <!-- Blog Entries Column -->
+            <div class="col-md-7 text-center">
 
-    <div class="row">
+                
 
-    <div class="col-md-8 col-md-offset-2 col-sm-12">
-
-    <!-- Contenu -->
-    <div class="well">
-        <!-- Votre contenu ici -->
-
-        <?php 
+            <?php 
 
             $per_page = 3;
 
@@ -128,56 +102,76 @@ include "includes/navigation.php";
             <!-- Commentaires -->
             <h1 class="text-center">Avis : </h1>
             <!-- Posted Comments -->
-            <?php 
+<?php 
 
-            $query = "SELECT * FROM commentaires WHERE com_status = 'publier' LIMIT 4";
-            $select_commentaires_query = mysqli_query($connection, $query);
+$query = "SELECT * FROM commentaires WHERE com_status = 'publier' LIMIT 4";
+$select_commentaires_query = mysqli_query($connection, $query);
 
-            while ($row = mysqli_fetch_assoc($select_commentaires_query)) {
-                $com_nom = $row['com_nom'];
-                $com_prenom = $row['com_prenom'];
-                $com_commentaire = $row['com_commentaire'];
-                $com_note = $row['com_note'];
-            
-                // Afficher les commentaires publiés
-                ?>
-            <div class="well">
-            <?php
-                    // Boucle pour afficher les étoiles pleines
-                    for ($i = 1; $i <= $com_note; $i++) {
-                        echo '<i class="fas fa-star text-warning"></i>';
-                    }
+while ($row = mysqli_fetch_assoc($select_commentaires_query)) {
+    $com_nom = $row['com_nom'];
+    $com_prenom = $row['com_prenom'];
+    $com_commentaire = $row['com_commentaire'];
+    $com_note = $row['com_note'];
 
-                    // Boucle pour afficher les étoiles vides (si nécessaire)
-                    for ($i = $com_note + 1; $i <= 5; $i++) {
-                        echo '<i class="far fa-star"></i>';
-                    }
-                    ?>
-                <h4><?php echo $com_nom . ' ' . $com_prenom; ?></h4>
-                <p><?php echo $com_commentaire; ?></p>
-                <div class="rating"></div>
-            </div>
-            <?php
-
-                
-                
-            }
-            ?>
-
-            
-            
-            </div>
-            
-        </div>
-    </div>
+    // Afficher les commentaires publiés
+    ?>
+<div class="well">
+<?php
+        // Boucle pour afficher les étoiles pleines
+        for ($i = 1; $i <= $com_note; $i++) {
+            echo '<i class="fas fa-star text-warning"></i>';
+        }
+        
+        // Boucle pour afficher les étoiles vides (si nécessaire)
+        for ($i = $com_note + 1; $i <= 5; $i++) {
+            echo '<i class="far fa-star"></i>';
+        }
+        ?>
+    <h4><?php echo $com_nom . ' ' . $com_prenom; ?></h4>
+    <p><?php echo $com_commentaire; ?></p>
+    <div class="rating"></div>
 </div>
-</div>
-<h2 class="text-center">Horaires</h2>
+<?php
+
+
+
+}
+?>
+
+
+            <h2 class="text-center">Horaires</h2>
             <?php  include "includes/horaires.php" ?>
             <div>
 
+            
+            </div>
 
-    </div>    
+            
+        </div>
+        <div class="col-md-1"></div>
 
-<!-- Footer -->
-        <?php include "includes/footer.php"; ?>
+        <!-- Form login -->
+
+        <div class="col-md-2 well">
+                        <h4 class="text-center">Connection :</h4>
+            
+                        <form action="includes/login.php" method="post"class="form">            
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="user_email" placeholder="Votre email">                
+                            </div>
+            
+                            <div class="input-group">
+                                <input name="user_password" type="password" class="form-control" placeholder="Mot de passe">
+                                <span class="input-group-btn">
+                                <button class="btn btn-primary" name="login" type="submit">Envoyer
+                                </button>
+                                </span>
+                            </div>            
+                        </form>
+        </div>
+            <!-- Fin form login -->
+
+    </div>
+
+        <!-- Footer -->
+<?php include "includes/footer.php"; ?>

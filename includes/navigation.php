@@ -18,23 +18,13 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
 
-                <?php 
 
-                $query = "SELECT * FROM navigation";
-                $select_all_navigation_query = mysqli_query($connection, $query);
-
-                while ($row = mysqli_fetch_assoc($select_all_navigation_query)) {
-                    $nav_titre = $row['nav_titre'];
-                    echo "<li><a href='#'>{$nav_titre}</a></li>";
-                }
-                
-                ?>
                 
                 <li><a href="voitures.php">Voitures</a></li>
-                <li><a href="commentaires.php">Commentaires</a></li>
+                <li><a href="commentaires.php">Avis</a></li>
                 <li><a href="contact.php">Contact</a></li>
                 <li><a href="admin">Admin</a></li>
-                <li><a href="registration.php">Registration</a></li>
+                <!-- <li><a href="registration.php">Registration</a></li> -->
 
                 <!-- Lien if connected -->
 <?php 

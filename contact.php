@@ -70,6 +70,8 @@
         </div>
     </div>
 
+    
+
     <h2 class="text-center">Horaires</h2>
     <?php include "includes/horaires.php" ?>
 

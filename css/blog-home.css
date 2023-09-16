@@ -5,9 +5,18 @@
  */
 
 body {
-    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+  padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
 }
 
-footer {
-    margin: 50px 0;
+/* Couleurs pastel */
+.card1 {
+  background-color: #aed6f1; /* Bleu pastel */
+}
+
+.card2 {
+  background-color: #abebc6; /* Vert pastel */
+}
+
+.card3 {
+  background-color: #f9e79f; /* Orange pastel */
 }

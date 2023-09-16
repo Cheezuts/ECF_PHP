@@ -66,7 +66,7 @@ if(isset($_POST['checkBoxArray'])) {
                         <tbody>
 
                         <?php 
-                        $query = "SELECT * FROM services ORDER BY serv_id DESC";
+                        $query = "SELECT * FROM services";
                         $select_services = mysqli_query($connection, $query);
                     
                         while($row = mysqli_fetch_assoc($select_services)) {

@@ -134,38 +134,7 @@ if (isset($_GET['message']) && $_GET['message'] === 'not_authorized') {
     </div>
 
 
-    <!-- compteur des navigations -->
-
-    <div class="col-lg-3 col-md-6">
-        <div class="panel panel-red">
-            <div class="panel-heading">
-                <div class="row">
-                    <div class="col-xs-3">
-                        <i class="fa fa-list fa-5x"></i>
-                    </div>
-                    <div class="col-xs-9 text-right">
-
-                    <?php 
-        $query = "SELECT * FROM navigation";
-        $select_all_navigation = mysqli_query($connection, $query);
-        $navigation_counts = mysqli_num_rows($select_all_navigation);
-        
-        echo "<div class='huge'>{$navigation_counts}</div>"
-        ?>
-
-                        <div class="text-bold">Navigation</div>
-                    </div>
-                </div>
-            </div>
-            <a href="navigation.php">
-                <div class="panel-footer">
-                    <span class="pull-left text-bold">Détails</span>
-                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                    <div class="clearfix"></div>
-                </div>
-            </a>
-        </div>
-    </div>
+   
 
 
     <!-- compteur des voitures -->
@@ -259,10 +228,10 @@ $commentaires_masquer_counts = mysqli_num_rows($select_all_commentaires_masquer)
                     ['', ''],
 
                     <?php
-                    $element_text = ['Services', 'Commentaires','publier','masqué', 'Utilisateurs', 'Navigation', 'Voitures'];
-                    $element_count = [$services_counts, $commentaires_counts, $commentaires_publier_counts, $commentaires_masquer_counts, $admins_counts, $navigation_counts, $voitures_counts];
+                    $element_text = ['Services', 'Commentaires','publier','masqué', 'Utilisateurs', 'Voitures'];
+                    $element_count = [$services_counts, $commentaires_counts, $commentaires_publier_counts, $commentaires_masquer_counts, $admins_counts, $voitures_counts];
 
-                    for($i = 0; $i < 7; $i++) {
+                    for($i = 0; $i < 6; $i++) {
 
                         echo "['{$element_text[$i]}'" . "," . "{$element_count[$i]}],";
 
@@ -278,7 +247,8 @@ $commentaires_masquer_counts = mysqli_num_rows($select_all_commentaires_masquer)
                     chart: {
                         title: '',
                         subtitle: '',
-                    }
+                    },
+                    
                 };
 
                 var chart = new google.charts.Bar(document.getElementById('columnchart_material'));

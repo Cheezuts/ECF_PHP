@@ -25,7 +25,7 @@
                     <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+                            <a href="profile.php"><i class="fa fa-fw fa-user"></i> Profil</a>
                         </li>
                         <li class="divider"></li>
                         <li>
@@ -75,9 +75,6 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="./navigation.php"><i class="fa-solid fa-location-arrow text-primary fa-2x"></i> Navigation</a>
-                    </li>
-                    <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#commentaires_dropdown"><i class="fa-regular fa-comments text-primary fa-2x"></i> Commentaires<i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="commentaires_dropdown" class="collapse">
                             <li>
@@ -101,7 +98,7 @@
                     </li>
 
                     <li>
-                        <a href="profile.php"><i class="fa fa-fw fa-dashboard"></i> Profile</a>
+                        <a href="profile.php"><i class="fa fa-fw fa-dashboard"></i> Profil</a>
                     </li>
                 </ul>
             </div>
