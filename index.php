@@ -175,6 +175,7 @@ include "includes/navigation.php";
 <h2 class="text-center">Horaires</h2>
             <?php  include "includes/horaires.php" ?>
             <div>
+                
 
 
     </div>    

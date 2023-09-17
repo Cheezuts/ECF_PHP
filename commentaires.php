@@ -29,8 +29,9 @@ if (isset($_POST['create_comment'])) {
         if (!$create_comment_query) {
             die('QUERY FAILED' . mysqli_error($connection));
         }
+        // Alerte de succès
+        echo "<div class='alert alert-success text-center'><strong>Le message a été envoyé avec succès</strong></div>";
 
-        header("Location: commentaires.php");
     } else {
         echo "<div class='alert alert-warning text-center'><strong>Tous les champs doivent être remplis</strong></div>";
     }
