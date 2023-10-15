@@ -8,15 +8,17 @@ body {
   padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
 }
 
-/* Couleurs pastel */
-.card1 {
-  background-color: #aed6f1; /* Bleu pastel */
+p {
+  margin: 0 0 10px;
+  font-family: "Barlow", sans-serif;
 }
 
-.card2 {
-  background-color: #abebc6; /* Vert pastel */
-}
-
-.card3 {
-  background-color: #f9e79f; /* Orange pastel */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Rajdhani", sans-serif;
+  font-weight: bold;
 }

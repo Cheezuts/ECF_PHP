@@ -51,6 +51,9 @@
   .footer {
     height: 60px; /* Ajustez la hauteur pour les petits écrans */
   }
+  .mb-footer {
+    margin-bottom: 60px; /* Assurez-vous que cette valeur correspond à la hauteur du footer */
+  }
 }
 
 /* Pour les appareils avec une largeur d'écran comprise entre 768px et 992px */
@@ -73,13 +76,7 @@
   }
 }
 
-
-
-
-
-
-.footer
-span {
+.footer span {
   color: #262526;
 }
 
@@ -93,16 +90,28 @@ body {
   border-color: #262526;
 }
 
-
-
-
-h1, h2, h3, h4, h5, h6 {
-color: #d92332;
-  font-family: 'Rajdhani', sans-serif;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #d92332;
+  font-family: "Rajdhani", sans-serif;
 }
 
-p {
-  font-family: 'Barlow', sans-serif;
+@font-face {
+  font-family: "Barlow";
+  src: url("../fonts/Barlow-Regular.ttf") format("truetype");
+  /* Ajoutez d'autres formats de fichiers de police si vous les avez */
+  font-weight: normal;
+  font-style: normal;
 }
-```
 
+@font-face {
+  font-family: "Rajdhani";
+  src: url("../fonts/Rajdhani-Regular.ttf") format("truetype");
+  /* Ajoutez d'autres formats de fichiers de police si vous les avez */
+  font-weight: normal;
+  font-style: normal;
+}

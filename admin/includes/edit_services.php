@@ -8,9 +8,9 @@ $select_services_by_id = mysqli_query($connection, $query);
 
 while ($row = mysqli_fetch_assoc($select_services_by_id)) {
     $serv_id = $row['serv_id'];
-    $serv_titre = escape($row['serv_titre']);
-    $serv_image = escape($row['serv_image']);
-    $serv_contenu = escape($row['serv_contenu']);
+    $serv_titre = $row['serv_titre'];
+    $serv_image = $row['serv_image'];
+    $serv_contenu = $row['serv_contenu'];
 }
 
 if (isset($_POST['update_serv'])) {
@@ -46,20 +46,20 @@ if (isset($_POST['update_serv'])) {
 <form action="" method="post" enctype="multipart/form-data">
     <div class="form-group">
         <label for="title">Titre</label>
-        <input value="<?php echo $serv_titre ; ?>" type="text" class="form-control" name="titre">
-    </div> 
-        
-    <div class="form-group">        
-        <img width="100" src="../images/<?php echo $serv_image ; ?>" alt="">
+        <input value="<?php echo $serv_titre; ?>" type="text" class="form-control" name="titre">
+    </div>
+
+    <div class="form-group">
+        <img width="100" src="../images/<?php echo $serv_image; ?>" alt="">
         <input type="file" name="image">
     </div>
-    
+
     <div class="form-group">
         <label for="post_content">Contenu</label>
-        <textarea class="form-control "name="contenu" id="" cols="30" rows="10"><?php echo $serv_contenu ; ?></textarea>
+        <textarea class="form-control" name="contenu" id="" cols="30" rows="10"><?php echo str_replace("<br />", "", $serv_contenu); ?></textarea>
     </div>
-    
-    
+
+
 
     <div class="form-group">
         <input class="btn btn-primary" type="submit" name="update_serv" value="Editer ">
@@ -67,4 +67,3 @@ if (isset($_POST['update_serv'])) {
 
 
 </form>
-

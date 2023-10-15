@@ -1,23 +1,27 @@
 <?php include "includes/admin_header.php"; ?>
 
-    <div id="wrapper">
+<div id="wrapper">
 
-        <!-- Navigation -->
-        <?php include "includes/admin_navigation.php"; ?>
+    <!-- Navigation -->
+    <?php include "includes/admin_navigation.php"; ?>
 
+    <div id="page-wrapper">
 
-        <div id="page-wrapper">
+        <div class="container-fluid">
 
-            <div class="container-fluid">
-
-                <!-- Page Heading -->
-                <div class="row">
-                    <div class="col-lg-12">
+            <!-- Page Heading -->
+            <div class="row">
+                <div class="col-lg-12">
                     <h1 class="page-header">
-                            Gestion des services
-                            <small><?php echo $_SESSION['user_email'] ;?></small>
+                        Gestion des services
+                        <small><?php echo $_SESSION['user_email']; ?></small>
                     </h1>
+                </div>
+            </div>
+            <!-- /.row -->
 
+            <div class="row">
+                <div class="col-xs-12">
                     <?php
                     if (isset($_GET['source'])) {
                         $source = $_GET['source'];
@@ -36,21 +40,18 @@
                             include "includes/view_all_services.php";
                             break;
                     }
-
                     ?>
-                    
-
-                        
-
-                    </div>
                 </div>
-                <!-- /.row -->
-
             </div>
-            <!-- /.container-fluid -->
+            <!-- /.row -->
 
         </div>
-        <!-- /#page-wrapper -->
+        <!-- /.container-fluid -->
 
+    </div>
+    <!-- /#page-wrapper -->
 
-        <?php include "includes/admin_footer.php"; ?>
+</div>
+<!-- /#wrapper -->
+
+<?php include "includes/admin_footer.php"; ?>
