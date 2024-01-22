@@ -8,17 +8,50 @@ body {
   padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
 }
 
-p {
-  margin: 0 0 10px;
-  font-family: "Barlow", sans-serif;
+/* Custom page CSS */
+.navbar {
+  background-color: #d92332;
+  font-family: "Rajdhani", sans-serif;
+  text-shadow: 1px 1px 1px #000, 2px 2px 1px #000;
+  font-size: 20px;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+.navbar .navbar-nav > li > a {
+  color: white;
+}
+
+.navbar-brand,
+.navbar-toggle {
+  color: white;
+}
+
+.navbar .navbar-nav > li > a {
   font-family: "Rajdhani", sans-serif;
   font-weight: bold;
+}
+
+.nav-icon {
+  color: white;
+}
+
+.footer {
+  background-color: #d92332;
+  border-top: 1px solid #000000;
+  font-family: "Rajdhani", sans-serif;
+  font-weight: bold;
+  text-shadow: 1px 1px 1px #000, 2px 2px 1px #000;
+  font-size: 20px;
+}
+
+.footer a,
+.footer p {
+  color: white;
+}
+
+.footer i {
+  color: white;
+}
+
+.back-to-top {
+  color: white;
 }

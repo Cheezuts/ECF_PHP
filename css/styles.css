@@ -86,8 +86,8 @@ body {
 
 .navbar.navbar-inverse .navbar-collapse,
 .navbar.navbar-inverse .navbar-form {
-  background-color: #262526;
-  border-color: #262526;
+  background-color: #d92332;
+  border-color: #d92332;
 }
 
 h1,
@@ -100,7 +100,11 @@ h6 {
   font-family: "Rajdhani", sans-serif;
 }
 
-@font-face {
+.fas.fa-home {
+  color: white;
+}
+
+.fas fa @font-face {
   font-family: "Barlow";
   src: url("../fonts/Barlow-Regular.ttf") format("truetype");
   /* Ajoutez d'autres formats de fichiers de police si vous les avez */
